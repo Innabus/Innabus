@@ -12,6 +12,7 @@
 
 #include "ibDataTypes.h"
 #include "ibEngineDefines.h"
+#include "ibNew.h"
 #include "ibUtil.h"
 
 #endif // IB_FORCED_INCLUDE_H

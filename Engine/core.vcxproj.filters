@@ -17,6 +17,39 @@
     <ClCompile Include="src\ibSystemWin.cpp">
       <Filter>System\Win</Filter>
     </ClCompile>
+    <ClCompile Include="src\ibMCP.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibAtomicWin.cpp">
+      <Filter>Threading\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibCriticalSectionWin.cpp">
+      <Filter>Threading\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibMutexWin.cpp">
+      <Filter>Threading\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibSemaphoreWin.cpp">
+      <Filter>Threading\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibThreadBaseWin.cpp">
+      <Filter>Threading\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibNew.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibJobThread.cpp">
+      <Filter>Jobs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibHeapDefines.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibHeap.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibSystem.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
@@ -27,6 +60,18 @@
     </Filter>
     <Filter Include="System\Win">
       <UniqueIdentifier>{875104d7-e9bb-4200-9a31-21eb263d65cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Jobs">
+      <UniqueIdentifier>{3248754c-8ac8-4a3b-ae4c-8ad5c7a8e818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading">
+      <UniqueIdentifier>{2dfb741d-6c4b-488a-aa7e-53d895b51075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{a1d6df7e-5f6d-4412-b296-3d7272daba36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading\Win">
+      <UniqueIdentifier>{56932d3d-1e82-4b8d-ae63-5a3ac775d087}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,5 +99,61 @@
     <ClInclude Include="include\ibSystem.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="include\ibMCP.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibReference.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibReferenceExternal.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibJob.h">
+      <Filter>Jobs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibJobThread.h">
+      <Filter>Jobs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibKillJob.h">
+      <Filter>Jobs</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibAllocationData.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibHeapDefines.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibMemory.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibNew.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibAtomic.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibCriticalSection.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibMutex.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibSemaphore.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibThreadBase.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibHeap.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibGameThread.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\ibMemory.inl">
+      <Filter>Memory</Filter>
+    </None>
   </ItemGroup>
 </Project>

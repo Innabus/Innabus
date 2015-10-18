@@ -1,7 +1,14 @@
 #ifndef IB_SYSTEM_H
 #define IB_SYSTEM_H
 
-void SystemStartup();
+typedef int (*GameEntryPoint)();
+
+struct StartupGameInfo
+{
+	GameEntryPoint gameMain;
+};
+
+IB_EXPORT void SystemStartup(StartupGameInfo* pGameInfo);
 
 class ibSystem
 {

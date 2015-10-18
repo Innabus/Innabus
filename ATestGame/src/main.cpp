@@ -2,7 +2,7 @@
 #include "test.h"
 
 extern "C"
-int GameMain()
+int __declspec(dllexport) GameMain()
 {
 	testfunc();
 	return 0;

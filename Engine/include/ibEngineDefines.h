@@ -27,7 +27,7 @@
 #define IB_NETWORK
 
 // Enable external telemetry
-#define IB_ENABLE_TELEMETRY
+// #define IB_ENABLE_TELEMETRY
 #ifdef IB_ENABLE_TELEMETRY
 #define IB_TELEMETRY_SPACE (40 * 1024 * 1024)
 #define IB_TELEMETRY_PORT 7131
