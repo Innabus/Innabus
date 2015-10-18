@@ -1,0 +1,11 @@
+# Visual studio local and temp files
+*.sdf
+*.suo
+*.user
+
+# Build folders
+build/
+Build/
+pdb/
+Tools/bin/
+Engine/lib/
