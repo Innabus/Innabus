@@ -166,6 +166,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="3rdParty\sqlite3\sqlite3.c">
+      <ShowIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ShowIncludes>
+    </ClCompile>
     <ClCompile Include="src\ibAtomicWin.cpp" />
     <ClCompile Include="src\ibCriticalSectionWin.cpp" />
     <ClCompile Include="src\ibHash.cpp" />
@@ -185,6 +188,7 @@
     <ClCompile Include="src\test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="3rdParty\sqlite3\sqlite3.h" />
     <ClInclude Include="include\ibAllocationData.h" />
     <ClInclude Include="include\ibAtomic.h" />
     <ClInclude Include="include\ibCriticalSection.h" />
@@ -210,6 +214,7 @@
     <ClInclude Include="include\ibSystem.h" />
     <ClInclude Include="include\ibThreadBase.h" />
     <ClInclude Include="include\ibUtil.h" />
+    <ClInclude Include="include\test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\ibMemory.inl" />

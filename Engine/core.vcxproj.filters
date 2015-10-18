@@ -50,6 +50,9 @@
     <ClCompile Include="src\ibSystem.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="3rdParty\sqlite3\sqlite3.c">
+      <Filter>3rd Party</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
@@ -72,6 +75,9 @@
     </Filter>
     <Filter Include="Threading\Win">
       <UniqueIdentifier>{56932d3d-1e82-4b8d-ae63-5a3ac775d087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd Party">
+      <UniqueIdentifier>{5e5ca228-fa72-4a3d-bb7c-7924fac87f8f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +155,10 @@
     </ClInclude>
     <ClInclude Include="include\ibGameThread.h">
       <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test.h" />
+    <ClInclude Include="3rdParty\sqlite3\sqlite3.h">
+      <Filter>3rd Party</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

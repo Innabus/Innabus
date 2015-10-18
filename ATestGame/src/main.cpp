@@ -1,9 +1,12 @@
-#include <Windows.h>
 #include "test.h"
 
 extern "C"
-int __declspec(dllexport) GameMain()
+int GameMain()
 {
 	testfunc();
+
+	TestClass tc;
+	tc.Test();
+
 	return 0;
 }
