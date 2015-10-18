@@ -1,0 +1,26 @@
+Snowbird - gameplay layer
+core - threading, math, physics, etc
+filesystem
+renderer
+tools
+
+Folder structure
+root - (Innabus)
+	game
+		assets
+		src
+	engine
+		3rdparty
+		assets
+		include
+		lib
+		shaders
+		src
+	build
+		<config>
+			Game-dependent-file-heirarchy
+	tools
+		bin
+		prj
+			<per project>
+				src

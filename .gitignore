@@ -2,10 +2,12 @@
 *.sdf
 *.suo
 *.user
+*.opensdf
 
 # Build folders
 build/
 Build/
+obj/
 pdb/
 Tools/bin/
 Engine/lib/

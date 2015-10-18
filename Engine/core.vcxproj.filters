@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\test.cpp" />
+    <ClCompile Include="src\ibHash.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibLog.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibUtil.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibOSWin.cpp">
+      <Filter>System\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibSystemWin.cpp">
+      <Filter>System\Win</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Util">
+      <UniqueIdentifier>{bd1ddcf6-6633-49ef-baa9-d8d40ebc67ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{5c64b2f5-4fb0-4c87-9e1e-c833485e20a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Win">
+      <UniqueIdentifier>{875104d7-e9bb-4200-9a31-21eb263d65cc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ibDataTypes.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibEngineDefines.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibHash.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibLog.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibUtil.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibForcedInclude.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibOS.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibSystem.h">
+      <Filter>System</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
