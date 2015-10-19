@@ -1,8 +1,6 @@
 #ifndef IB_MATH_H
 #define IB_MATH_H
 
-#include "ibEngineDefines.h"
-
 namespace ibMath
 {
 	const float Pi = 3.14159265f;

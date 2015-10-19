@@ -1,9 +1,6 @@
-#include "test.h"
+#include "ibVec3.h"
 
 extern "C"
 int GameMain()
 {
-	testfunc();
-
-	return 0;
 }

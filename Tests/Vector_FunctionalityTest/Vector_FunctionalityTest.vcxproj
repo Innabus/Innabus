@@ -74,19 +74,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)Tests\Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)Tests\Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)Tests\Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
