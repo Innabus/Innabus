@@ -53,6 +53,15 @@
     <ClCompile Include="3rdParty\sqlite3\sqlite3.c">
       <Filter>3rd Party</Filter>
     </ClCompile>
+    <ClCompile Include="src\ibMatrix.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibQuat.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibVec3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
@@ -78,6 +87,9 @@
     </Filter>
     <Filter Include="3rd Party">
       <UniqueIdentifier>{5e5ca228-fa72-4a3d-bb7c-7924fac87f8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{2a588a90-7198-4539-9ece-a3d53b996de0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +171,18 @@
     <ClInclude Include="include\test.h" />
     <ClInclude Include="3rdParty\sqlite3\sqlite3.h">
       <Filter>3rd Party</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibMatrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibQuat.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibVec3.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
