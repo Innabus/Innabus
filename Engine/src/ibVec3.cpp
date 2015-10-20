@@ -7,6 +7,7 @@
 #include <math.h>
 
 const ibVec3 ibVec3::ZERO = ibVec3( 0, 0, 0 );
+const ibVec3 ibVec3::ONE = ibVec3( 1, 1, 1 );
 const ibVec3 ibVec3::X_AXIS = ibVec3( 1, 0, 0 );
 const ibVec3 ibVec3::Y_AXIS = ibVec3( 0, 1, 0 );
 const ibVec3 ibVec3::Z_AXIS = ibVec3( 0, 0, 1 );
@@ -243,11 +244,13 @@ ibVec3& ibVec3::operator*= ( const ibQuat& rhs )
 	return *this;
 }
 
+IB_EXPORT
 ibVec3 operator* ( const float lhs, const ibVec3& rhs )
 {
 	return ibVec3( rhs.x * lhs, rhs.y * lhs, rhs.z * lhs );
 }
 
+IB_EXPORT
 bool operator==( const ibVec3& lhs, const ibVec3& rhs )
 {
 	return (fabs(lhs.x - rhs.x) < IB_EPSILON_F ) &&

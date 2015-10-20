@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{825EE954-B87E-4AC0-8D58-47A95BA67202}</ProjectGuid>
+    <ProjectGuid>{2CB6AB8D-20BA-431A-A529-7FB2CCB51CCF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ATestGame</RootNamespace>
   </PropertyGroup>
@@ -175,7 +175,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Vector_FunctionalityTest.cpp">
+    <ClCompile Include="src\Matrix_FunctionalityTest.cpp">
       <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
     </ClCompile>
   </ItemGroup>

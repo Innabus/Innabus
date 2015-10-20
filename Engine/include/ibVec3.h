@@ -5,7 +5,7 @@
 class ibMtx;
 class ibQuat;
 
-class ibVec3
+class IB_EXPORT ibVec3
 {
 public:
 	ibVec3() {}; // No default init!
@@ -41,7 +41,6 @@ public:
 	ibVec3 operator* ( const ibMtx& rhs ) const;
 	ibVec3 operator* ( const ibQuat& rhs ) const;
 
-	friend ibVec3 operator*( const float lhs, const ibVec3& rhs ); // a * v
 	float operator* ( const ibVec3& rhs) const; // Dot product
 
 	// The versions with assignment are analogous to the above for the member functions
@@ -56,12 +55,13 @@ public:
 	float x, y, z; // w = 0/1 depending on usage; actually I think w = 0
 
 	static const ibVec3 ZERO; // { 0, 0, 0 }
+	static const ibVec3 ONE; // { 1, 1, 1 }
 	static const ibVec3 X_AXIS; // { 1, 0, 0 }
 	static const ibVec3 Y_AXIS; // { 0, 1, 0 }
 	static const ibVec3 Z_AXIS; // { 0, 0, 1 }
 };
 
-ibVec3 operator* ( const float lhs, const ibVec3& rhs );
-bool operator==( const ibVec3& lhs, const ibVec3& rhs );
+IB_EXPORT ibVec3 operator* ( const float lhs, const ibVec3& rhs );
+IB_EXPORT bool operator==( const ibVec3& lhs, const ibVec3& rhs );
 
 #endif // IB_VECTOR_H
