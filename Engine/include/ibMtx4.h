@@ -4,7 +4,7 @@
 
 class ibVec3;
 
-class ibMtx
+class IB_EXPORT ibMtx
 {
 public:
 	ibMtx() {} // No default initialization
@@ -46,6 +46,7 @@ public:
 				  _30, _31, _32, _33;
 		} mtx;
 		float a[4][4];
+		float f[16];
 	} data;
 
 	static const ibMtx ZERO;

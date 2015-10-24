@@ -53,13 +53,22 @@
     <ClCompile Include="3rdParty\sqlite3\sqlite3.c">
       <Filter>3rd Party</Filter>
     </ClCompile>
-    <ClCompile Include="src\ibMatrix.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
     <ClCompile Include="src\ibQuat.cpp">
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="src\ibVec3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibMtx2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibVec2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibMtx3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibMtx4.cpp">
       <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
@@ -175,13 +184,22 @@
     <ClInclude Include="include\ibMath.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="include\ibMatrix.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="include\ibQuat.h">
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="include\ibVec3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibMtx2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibVec2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibMtx3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibMtx4.h">
       <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>

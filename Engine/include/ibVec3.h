@@ -52,7 +52,7 @@ public:
 	ibVec3& operator*= ( const ibQuat& rhs );
 
 	// Data
-	float x, y, z; // w = 0/1 depending on usage; actually I think w = 0
+	float x, y, z;
 
 	static const ibVec3 ZERO; // { 0, 0, 0 }
 	static const ibVec3 ONE; // { 1, 1, 1 }

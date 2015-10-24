@@ -1,7 +1,7 @@
 #include "ibVec3.h"
 
 #include "ibEngineDefines.h"
-#include "ibMatrix.h"
+#include "ibMtx4.h"
 #include "ibQuat.h"
 
 #include <math.h>

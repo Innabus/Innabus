@@ -4,7 +4,7 @@
 
 extern "C" int GameMain();
 
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR lspzCmdLine, INT)
+int WINAPI WinMain(HINSTANCE /*hInst*/, HINSTANCE, LPSTR /*lspzCmdLine*/, INT)
 {
 	StartupGameInfo sgi;
 	sgi.gameMain = GameMain;

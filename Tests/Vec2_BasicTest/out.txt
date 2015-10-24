@@ -1,0 +1,57 @@
+\\
+\\ Constructors
+\\
+Uninit: [-1.07374e+008, -1.07374e+008]
+Rand: [0.622575, 0.212159]
+Copy: [0.622575, 0.212159]
+Assign: [0.622575, 0.212159]
+\\
+\\ Magnitude and Normalize
+\\
+V: [3, 4]|V| = 5, |V|^2 = 25
+Normalized: [0.6, 0.8]
+Norm copy:  [0.6, 0.8]
+\\
+\\ Members
+\\
+A: [2, 3]
+B: [4, 5]
+A + B: [6, 8]
+A - B: [-2, -2]
+2A: [4, 6]
+M:
+[ [ 2, 3 ]
+  [ 2, 3 ] ]
+A * M: [10, 15]
+A * B: 23
+\\
+\\ Non-members
+\\
+A + B: [6, 8]
+A - B: [-2, -2]
+2A: [4, 6]
+A * M: [10, 15]
+A * B: 23
+\\
+\\ Non-assignement Operators
+\\
+A + B: [6, 8]
+A - B: [-2, -2]
+A * B: 23
+2 * A: [4, 6]
+A * 2: [4, 6]
+A * M: [10, 15]
+\\
+\\ Assignment operators
+\\
+A += B: [6, 8]
+A -= B: [-2, -2]
+A *= 2: [4, 6]
+A *= M: [10, 15]
+\\
+\\ Comparison operators
+\\
+A == A: 1
+A == B: 0
+A != A: 0
+A != B: 1

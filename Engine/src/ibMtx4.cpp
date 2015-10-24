@@ -1,4 +1,4 @@
-#include "ibMatrix.h"
+#include "ibMtx4.h"
 #include "ibVec3.h"
 
 #include <memory.h>

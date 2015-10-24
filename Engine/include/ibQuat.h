@@ -3,7 +3,7 @@
 #pragma once
 
 #include "ibDataTypes.h"
-#include "ibMatrix.h"
+#include "ibMtx4.h"
 
 class ibVec3;
 

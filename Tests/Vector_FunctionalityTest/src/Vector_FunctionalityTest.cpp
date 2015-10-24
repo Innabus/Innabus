@@ -1,8 +1,8 @@
 #include <fstream>
 #include <cstdlib>
-#include <ctime>
 #include <random>
 #include <string>
+#include <vector>
 
 #include "ibVec3.h"
 
@@ -10,7 +10,7 @@ std::mt19937 s_rng;
 
 f32 rand_flt(f32 min = 0.f, f32 max = 1.f)
 {
-	std::uniform_real_distribution<float> ud(0.f, 1.f);
+	std::uniform_real_distribution<float> ud(min, max);
 	return ud(s_rng);
 }
 
