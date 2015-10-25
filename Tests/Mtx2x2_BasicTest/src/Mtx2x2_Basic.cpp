@@ -86,6 +86,28 @@ void TestNonMembers()
 	fout << "Verify:\n" << ibMtx2::Stabelize(ibMtx2::Mul(ibMtx2::Invert(a), a));
 }
 
+void TestOperators()
+{
+	WriteHeader(fout, "Non-assignment operators");
+	ibMtx2 a(2, 3, 4, 5), b(2, 3, 2, 3);
+	fout << "A:\n" << a << "B:\n" << b;
+	fout << "A + B:\n" << a + b;
+	fout << "A - B:\n" << a - b;
+	fout << "A * 2:\n" << a * 2;
+	fout << "2 * A:\n" << 2 * a;
+	fout << "A * B:\n" << a * b;
+
+	WriteHeader(fout, "Assignment operators");
+	fout << "A:\n" << a << "B:\n" << b;
+	fout << "A += B:\n" << (a += b);
+	a -= b;
+	fout << "A -= B:\n" << (a -= b);
+	a += b;
+	fout << "A *= 2:\n" << (a *= 2);
+	a *= .5f;
+	fout << "A *= B:\n" << (a *= b);
+}
+
 void TestRotation()
 {
 	WriteHeader(fout, "Test rotation");
@@ -110,6 +132,7 @@ int GameMain()
 	TestConstructors();
 	TestMembers();
 	TestNonMembers();
+	TestOperators();
 
 	TestRotation();
 

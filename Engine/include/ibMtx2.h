@@ -51,4 +51,15 @@ public:
 	static const ibMtx2 IDENTITY;
 };
 
+inline ibMtx2 operator+ ( const ibMtx2& lhs, const ibMtx2& rhs ) { return ibMtx2::Add(lhs, rhs); }
+inline ibMtx2 operator- ( const ibMtx2& lhs, const ibMtx2& rhs ) { return ibMtx2::Sub(lhs, rhs); }
+inline ibMtx2 operator* ( const f32 scale, const ibMtx2& rhs ) { return ibMtx2::Scale(rhs, scale); }
+inline ibMtx2 operator* ( const ibMtx2& lhs, const f32 scale ) { return ibMtx2::Scale(lhs, scale); }
+inline ibMtx2 operator* ( const ibMtx2& lhs, const ibMtx2& rhs ) { return ibMtx2::Mul(lhs, rhs); }
+
+inline ibMtx2& operator+= ( ibMtx2& lhs, const ibMtx2& rhs ) { return lhs.Add(rhs); }
+inline ibMtx2& operator-= ( ibMtx2& lhs, const ibMtx2& rhs ) { return lhs.Sub(rhs); }
+inline ibMtx2& operator*= ( ibMtx2& lhs, const f32 scale ) { return lhs.Scale(scale); }
+inline ibMtx2& operator*= ( ibMtx2& lhs, const ibMtx2& rhs ) { return lhs.Mul(rhs); }
+
 #endif // IB_MTX2_H

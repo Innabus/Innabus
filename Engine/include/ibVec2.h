@@ -2,6 +2,8 @@
 #define IB_VEC2_H
 #pragma once
 
+#include "ibMath.h"
+
 class ibMtx2;
 
 class IB_EXPORT ibVec2
@@ -46,19 +48,19 @@ public:
 };
 
 // Binary operators
-IB_EXPORT ibVec2 operator+ ( const ibVec2& lhs, const ibVec2& rhs );
-IB_EXPORT ibVec2 operator- ( const ibVec2& lhs, const ibVec2& rhs );
-IB_EXPORT ibVec2 operator* ( const ibVec2& lhs, const f32 s );
-IB_EXPORT ibVec2 operator* ( const f32 s, const ibVec2& rhs );
-IB_EXPORT f32 operator* ( const ibVec2& lhs, const ibVec2& rhs );
-IB_EXPORT ibVec2 operator* ( const ibVec2& lhs, const ibMtx2& rhs );
+inline ibVec2 operator+ ( const ibVec2& lhs, const ibVec2& rhs ) { return ibVec2::Add(lhs, rhs); }
+inline ibVec2 operator- ( const ibVec2& lhs, const ibVec2& rhs ) { return ibVec2::Sub(lhs, rhs); }
+inline ibVec2 operator* ( const ibVec2& lhs, const f32 s ) { return ibVec2::Mul(lhs, s); }
+inline ibVec2 operator* ( const f32 s, const ibVec2& rhs ) { return ibVec2::Mul(rhs, s); }
+inline f32 operator* ( const ibVec2& lhs, const ibVec2& rhs ) { return ibVec2::Dot(lhs, rhs); }
+inline ibVec2 operator* ( const ibVec2& lhs, const ibMtx2& rhs ) { return ibVec2::Mul(lhs, rhs); }
 
-IB_EXPORT ibVec2& operator+= ( ibVec2& lhs, const ibVec2& rhs );
-IB_EXPORT ibVec2& operator-= ( ibVec2& lhs, const ibVec2& rhs );
-IB_EXPORT ibVec2& operator*= ( ibVec2& lhs, const f32 s );
-IB_EXPORT ibVec2& operator*= ( ibVec2& lhs, const ibMtx2& rhs );
+inline ibVec2& operator+= ( ibVec2& lhs, const ibVec2& rhs ) { return lhs.Add(rhs); }
+inline ibVec2& operator-= ( ibVec2& lhs, const ibVec2& rhs ) { return lhs.Sub(rhs); }
+inline ibVec2& operator*= ( ibVec2& lhs, const f32 s ) { return lhs.Mul(s); }
+inline ibVec2& operator*= ( ibVec2& lhs, const ibMtx2& rhs ) { return lhs.Mul(rhs); }
 
-IB_EXPORT bool operator==( const ibVec2& lhs, const ibVec2& rhs );
-IB_EXPORT bool operator!=( const ibVec2& lhs, const ibVec2& rhs );
+inline bool operator==( const ibVec2& lhs, const ibVec2& rhs ) { return fcmp(lhs.x, rhs.x) && fcmp(lhs.y, rhs.y); }
+inline bool operator!=( const ibVec2& lhs, const ibVec2& rhs ) { return !(lhs == rhs); }
 
 #endif // IB_VEC2_H
