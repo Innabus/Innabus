@@ -8,7 +8,10 @@
 #include "ibMath.h"
 #include "ibMtx2.h"
 #include "ibMtx3.h"
+#include "ibMtx4.h"
 #include "ibVec2.h"
+#include "ibVec3.h"
+#include "ibVec4.h"
 
 #include <Windows.h>
 
@@ -31,6 +34,14 @@ ibMtx3 RandMtx3()
 	return ibMtx3(rand_flt(), rand_flt(), rand_flt(),
 		          rand_flt(), rand_flt(), rand_flt(),
 				  rand_flt(), rand_flt(), rand_flt());
+}
+
+ibMtx4 RandMtx4()
+{
+	return ibMtx4(rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+		          rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+				  rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+				  rand_flt(), rand_flt(), rand_flt(), rand_flt());
 }
 
 ibVec2 RandVec2()
@@ -59,6 +70,19 @@ std::ostream& operator<<(std::ostream& o, const ibMtx3& rhs)
 	return o;
 }
 
+std::ostream& operator<<(std::ostream& o, const ibMtx4& rhs)
+{
+	ibMtx4 stab = ibMtx4::Stabelize(rhs);
+	for (u32 i = 0; i < 4; ++i)
+	{
+		o << "[ ";
+		for (u32 j = 0; j < 3; ++j)
+			o << stab.data.a[i][j] << ", ";
+		o << stab.data.a[i][3] << " ]\n";
+	}
+	return o;
+}
+
 std::ostream& operator<<(std::ostream& o, const ibVec2& rhs)
 {
 	ibVec2 s = ibVec2::Stabelize(rhs);
@@ -66,18 +90,32 @@ std::ostream& operator<<(std::ostream& o, const ibVec2& rhs)
 	return o;
 }
 
-void WriteHeader(std::ostream& o, const std::string& s)
+std::ostream& operator<<(std::ostream& o, const ibVec3& rhs)
 {
-	o << "\\\\\n\\\\ " << s << "\n\\\\" << std::endl;
+	ibVec3 s = ibVec3::Stabelize(rhs);
+	o << "[" << s.x << ", " << s.y << ", " << s.z << "]";
+	return o;
+}
+
+std::ostream& operator<<(std::ostream& o, const ibVec4& rhs)
+{
+	ibVec4 s = ibVec4::Stabelize(rhs);
+	o << "[" << s.x << ", " << s.y << ", " << s.z << ", " << s.w << "]";
+	return o;
+}
+
+void WriteHeader(const std::string& s)
+{
+	fout << "\\\\\n\\\\ " << s << "\n\\\\" << std::endl;
 }
 
 void TestConstructors()
 {
-	WriteHeader(fout, "Constructors");
-	ibMtx3 uninit;
-	ibMtx3 init( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
-	ibMtx3 copy(init);
-	ibMtx3 assign;
+	WriteHeader("Constructors");
+	ibMtx4 uninit;
+	ibMtx4 init( 4, 2, 3, 1, 1, 2, 2, 1, 0, .5, 3, 0, 1, 0, 2, 1 );
+	ibMtx4 copy(init);
+	ibMtx4 assign;
 	assign = copy;
 
 	fout << "Uninit:\n" << uninit;
@@ -89,21 +127,21 @@ void TestConstructors()
 
 void TestMembers()
 {
-	WriteHeader(fout, "Members");
-	ibMtx3 a( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
-	ibMtx3 b( 3, 2, 1, 2, 1, 3, 1, 3, 2 );
+	WriteHeader("Members");
+	ibMtx4 a( 4, 2, 3, 1, 1, 2, 2, 1, 0, .5, 3, 0, 1, 0, 2, 1 );
+	ibMtx4 b( 1, 2, 3, 4, 0, 1, 1, 2, 1, 0, 2, 0, 0, 3, 2, 1 );
 
 	fout << "A:\n" << a;
 	fout << "B:\n" << b;
 	fout << "A + B:\n" << a.Add(b);
-	a = ibMtx3( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
+	a = ibMtx4( 4, 2, 3, 1, 1, 2, 2, 1, 0, .5, 3, 0, 1, 0, 2, 1 );
 	fout << "A - B:\n" << a.Sub(b);
-	a = ibMtx3( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
+	a = ibMtx4( 4, 2, 3, 1, 1, 2, 2, 1, 0, .5, 3, 0, 1, 0, 2, 1 );
 	fout << "A * B:\n" << a.Mul(b);
-	a = ibMtx3( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
+	a = ibMtx4( 4, 2, 3, 1, 1, 2, 2, 1, 0, .5, 3, 0, 1, 0, 2, 1 );
 	fout << "Transpose A:\n" << a.Transpose();
 	a.Transpose();
-	ibMtx3 inv = a;
+	ibMtx4 inv = a;
 	fout << "Inverse A:\n" << inv.Invert();
 	fout << "Verify:\n" << inv.Mul(a);
 	fout.flush();
@@ -111,24 +149,24 @@ void TestMembers()
 
 void TestNonMembers()
 {
-	WriteHeader(fout, "Non-members");
-	ibMtx3 a( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
-	ibMtx3 b( 3, 2, 1, 2, 1, 3, 1, 3, 2 );
+	WriteHeader("Non-members");
+	ibMtx4 a( 4, 2, 3, 1, 1, 2, 2, 1, 0, .5, 3, 0, 1, 0, 2, 1 );
+	ibMtx4 b( 1, 2, 3, 4, 0, 1, 1, 2, 1, 0, 2, 0, 0, 3, 2, 1 );
 
-	fout << "A + B:\n" << ibMtx3::Add(a, b);
-	fout << "A - B:\n" << ibMtx3::Sub(a, b);
-	fout << "A * B:\n" << ibMtx3::Mul(a, b);
-	fout << "Transpose A:\n" << ibMtx3::Transpose(a);
-	fout << "Inverse A:\n" << ibMtx3::Invert(a);
-	fout << "Verify:\n" << ibMtx3::Mul(a, ibMtx3::Invert(a));
+	fout << "A + B:\n" << ibMtx4::Add(a, b);
+	fout << "A - B:\n" << ibMtx4::Sub(a, b);
+	fout << "A * B:\n" << ibMtx4::Mul(a, b);
+	fout << "Transpose A:\n" << ibMtx4::Transpose(a);
+	fout << "Inverse A:\n" << ibMtx4::Invert(a);
+	fout << "Verify:\n" << ibMtx4::Mul(a, ibMtx4::Invert(a));
 	fout.flush();
 }
 
 void TestOperators()
 {
-	WriteHeader(fout, "Non-assignment operators");
-	ibMtx3 a( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
-	ibMtx3 b( 3, 2, 1, 2, 1, 3, 1, 3, 2 );
+	WriteHeader("Non-assignment operators");
+	ibMtx4 a( 4, 2, 3, 1, 1, 2, 2, 1, 0, .5, 3, 0, 1, 0, 2, 1 );
+	ibMtx4 b( 1, 2, 3, 4, 0, 1, 1, 2, 1, 0, 2, 0, 0, 3, 2, 1 );
 	fout << "A:\n" << a << "B:\n" << b;
 	fout << "A + B:\n" << a + b;
 	fout << "A - B:\n" << a - b;
@@ -136,7 +174,7 @@ void TestOperators()
 	fout << "2 * A:\n" << 2 * a;
 	fout << "A * B:\n" << a * b;
 
-	WriteHeader(fout, "Assignment operators");
+	WriteHeader("Assignment operators");
 	fout << "A:\n" << a << "B:\n" << b;
 	fout << "A += B:\n" << (a += b);
 	a -= b;
