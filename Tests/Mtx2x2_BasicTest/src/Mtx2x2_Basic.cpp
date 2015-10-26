@@ -16,7 +16,7 @@ std::mt19937 s_rng;
 
 f32 rand_flt(f32 min = 0.f, f32 max = 1.f)
 {
-	std::uniform_real_distribution<float> ud(min, max);
+	std::uniform_real_distribution<f32> ud(min, max);
 	return ud(s_rng);
 }
 
@@ -56,7 +56,7 @@ void TestMembers()
 {
 	WriteHeader(fout, "Member functions");
 	ibMtx2 scaleBase = RandMtx2();
-	float scale = rand_flt(1.f, 2.f);
+	f32 scale = rand_flt(1.f, 2.f);
 	ibMtx2 scaled = scaleBase;
 	scaled.Scale(scale);
 

@@ -11,7 +11,7 @@ public:
 	ibMtx3& operator= ( const ibMtx3& rhs );
 
 	// Members work in place
-	ibMtx3& Scale( const float f ); // Scalar multiply
+	ibMtx3& Scale( const f32 f ); // Scalar multiply
 
 	ibMtx3& Add( const ibMtx3& rhs );
 	ibMtx3& Sub( const ibMtx3& rhs );
@@ -50,5 +50,16 @@ public:
 	static const ibMtx3 FLIP_Z;
 	static const ibMtx3 IDENTITY;
 };
+
+inline ibMtx3 operator+ ( const ibMtx3& lhs, const ibMtx3& rhs ) { return ibMtx3::Add(lhs, rhs); }
+inline ibMtx3 operator- ( const ibMtx3& lhs, const ibMtx3& rhs ) { return ibMtx3::Sub(lhs, rhs); }
+inline ibMtx3 operator* ( const f32 scale, const ibMtx3& rhs ) { return ibMtx3::Scale(rhs, scale); }
+inline ibMtx3 operator* ( const ibMtx3& lhs, const f32 scale ) { return ibMtx3::Scale(lhs, scale); }
+inline ibMtx3 operator* ( const ibMtx3& lhs, const ibMtx3& rhs ) { return ibMtx3::Mul(lhs, rhs); }
+
+inline ibMtx3& operator+= ( ibMtx3& lhs, const ibMtx3& rhs ) { return lhs.Add(rhs); }
+inline ibMtx3& operator-= ( ibMtx3& lhs, const ibMtx3& rhs ) { return lhs.Sub(rhs); }
+inline ibMtx3& operator*= ( ibMtx3& lhs, const f32 scale ) { return lhs.Scale(scale); }
+inline ibMtx3& operator*= ( ibMtx3& lhs, const ibMtx3& rhs ) { return lhs.Mul(rhs); }
 
 #endif // IB_MTX3_H

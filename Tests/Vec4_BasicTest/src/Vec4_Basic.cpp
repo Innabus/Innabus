@@ -8,8 +8,10 @@
 #include "ibMath.h"
 #include "ibMtx2.h"
 #include "ibMtx3.h"
+#include "ibMtx4.h"
 #include "ibVec2.h"
 #include "ibVec3.h"
+#include "ibVec4.h"
 
 #include <Windows.h>
 
@@ -32,6 +34,14 @@ ibMtx3 RandMtx3()
 	return ibMtx3(rand_flt(), rand_flt(), rand_flt(),
 		          rand_flt(), rand_flt(), rand_flt(),
 				  rand_flt(), rand_flt(), rand_flt());
+}
+
+ibMtx4 RandMtx4()
+{
+	return ibMtx4(rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+		          rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+				  rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+				  rand_flt(), rand_flt(), rand_flt(), rand_flt());
 }
 
 ibVec2 RandVec2()
@@ -60,6 +70,19 @@ std::ostream& operator<<(std::ostream& o, const ibMtx3& rhs)
 	return o;
 }
 
+std::ostream& operator<<(std::ostream& o, const ibMtx4& rhs)
+{
+	ibMtx4 stab = ibMtx4::Stabelize(rhs);
+	for (u32 i = 0; i < 4; ++i)
+	{
+		o << "[ ";
+		for (u32 j = 0; j < 3; ++j)
+			o << stab.data.a[i][j] << ", ";
+		o << stab.data.a[i][3] << " ]\n";
+	}
+	return o;
+}
+
 std::ostream& operator<<(std::ostream& o, const ibVec2& rhs)
 {
 	ibVec2 s = ibVec2::Stabelize(rhs);
@@ -74,6 +97,13 @@ std::ostream& operator<<(std::ostream& o, const ibVec3& rhs)
 	return o;
 }
 
+std::ostream& operator<<(std::ostream& o, const ibVec4& rhs)
+{
+	ibVec4 s = ibVec4::Stabelize(rhs);
+	o << "[" << s.x << ", " << s.y << ", " << s.z << ", " << s.w << "]";
+	return o;
+}
+
 void WriteHeader(const std::string& s)
 {
 	fout << "\\\\\n\\\\ " << s << "\n\\\\" << std::endl;
@@ -82,10 +112,10 @@ void WriteHeader(const std::string& s)
 void TestConstructors()
 {
 	WriteHeader("Constructors");
-	ibVec3 uninit;
-	ibVec3 init(1,2,3);
-	ibVec3 copy(init);
-	ibVec3 assign;
+	ibVec4 uninit;
+	ibVec4 init(1,2,3,4);
+	ibVec4 copy(init);
+	ibVec4 assign;
 	assign = init;
 
 	fout << "Uninit: " << uninit << std::endl;
@@ -97,12 +127,12 @@ void TestConstructors()
 void TestMagnAndNorm()
 {
 	WriteHeader("Magnitude and normalize");
-	ibVec3 a(1, 2, 3);
+	ibVec4 a(4, 2, 3, 1);
 	fout << "A: " << a << std::endl;
 	fout << "Magnitude: " << a.Magnitude() << ", Mag^2: " << a.MagnitudeS() << std::endl;
 	fout << "Normalized: " << a.Normalize() << std::endl;
-	a = ibVec3(1, 2, 3);
-	ibVec3 copy;
+	a = ibVec4(4, 2, 3, 1);
+	ibVec4 copy;
 	a.NormalizeCopy(copy);
 	fout << "Normalized copy: " << copy << std::endl;
 	fout << "A: " << a << std::endl;
@@ -111,7 +141,7 @@ void TestMagnAndNorm()
 void TestMembers()
 {
 	WriteHeader("Members");
-	ibVec3 a(1, 2, 3), b(4,2,3);
+	ibVec4 a(4, 2, 3, 1), b(2,2,3,1);
 	fout << "A: " << a << std::endl;
 	fout << "B: " << b << std::endl;
 	fout << "A + B: " << a.Add(b) << std::endl;
@@ -121,10 +151,11 @@ void TestMembers()
 	fout << "2A: " << a.Mul(2) << std::endl;
 	a.Mul(.5f);
 	fout << "A * B: " << a.Dot(b) << std::endl;
-	a = ibVec3(1,2,3);
-	fout << "A x B: " << a.Cross(b) << std::endl;
-	ibMtx3 mtx( 2.f, 0, 1, 1, .5f, 0, 0, 0, 1 );
-	a = ibVec3(1,2,3);
+	ibMtx4 mtx( 2.0f, 0.0f, 1.0f, 1.0f,
+		        1.0f,  .5f, 2.0f, 0.3f,
+				0.0f, 2.0f, 0.5f, 0.0f,
+				0.0f, 1.0f, 1.0f, 2.5f);
+	a = ibVec4(4, 2, 3, 1);
 	fout << "M: " << mtx << std::endl;
 	fout << "A * M: " << a.Mul(mtx) << std::endl;
 	fout.flush();
@@ -133,22 +164,27 @@ void TestMembers()
 void TestNonMembers()
 {
 	WriteHeader("Non-members");
-	ibVec3 a(1, 2, 3), b(4,2,3);
-	ibMtx3 mtx( 2.f, 0, 1, 1, .5f, 0, 0, 0, 1 );
-	fout << "A + B: " << ibVec3::Add(a, b) << std::endl;
-	fout << "A - B: " << ibVec3::Sub(a, b) << std::endl;
-	fout << "2A: " << ibVec3::Mul(2, a) << std::endl;
-	fout << "A * 2: " << ibVec3::Mul(a, 2) << std::endl;
-	fout << "A * B: " << ibVec3::Dot(a, b) << std::endl;
-	fout << "A x B: " << ibVec3::Cross(a, b) << std::endl;
-	fout << "A * M: " << ibVec3::Mul(a, mtx) << std::endl;
+	ibVec4 a(4, 2, 3, 1), b(2,2,3,1);
+	ibMtx4 mtx( 2.0f, 0.0f, 1.0f, 1.0f,
+		        1.0f,  .5f, 2.0f, 0.3f,
+				0.0f, 2.0f, 0.5f, 0.0f,
+				0.0f, 1.0f, 1.0f, 2.5f);
+	fout << "A + B: " << ibVec4::Add(a, b) << std::endl;
+	fout << "A - B: " << ibVec4::Sub(a, b) << std::endl;
+	fout << "2A: " << ibVec4::Mul(2, a) << std::endl;
+	fout << "A * 2: " << ibVec4::Mul(a, 2) << std::endl;
+	fout << "A * B: " << ibVec4::Dot(a, b) << std::endl;
+	fout << "A * M: " << ibVec4::Mul(a, mtx) << std::endl;
 }
 
 void TestOperators()
 {
 	WriteHeader("Non-assignment operators");
-	ibVec3 a(1, 2, 3), b(4,2,3);
-	ibMtx3 mtx( 2.f, 0, 1, 1, .5f, 0, 0, 0, 1 );
+	ibVec4 a(4, 2, 3, 1), b(2,2,3,1);
+	ibMtx4 mtx( 2.0f, 0.0f, 1.0f, 1.0f,
+		        1.0f,  .5f, 2.0f, 0.3f,
+				0.0f, 2.0f, 0.5f, 0.0f,
+				0.0f, 1.0f, 1.0f, 2.5f);
 	fout << "A + B: " << a + b << std::endl;
 	fout << "A - B: " << a - b << std::endl;
 	fout << "A * 2: " << a * 2 << std::endl;

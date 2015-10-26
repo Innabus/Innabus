@@ -17,7 +17,7 @@ std::mt19937 s_rng;
 
 f32 rand_flt(f32 min = 0.f, f32 max = 1.f)
 {
-	std::uniform_real_distribution<float> ud(min, max);
+	std::uniform_real_distribution<f32> ud(min, max);
 	return ud(s_rng);
 }
 
@@ -122,6 +122,29 @@ void TestNonMembers()
 	fout << "Inverse A:\n" << ibMtx3::Invert(a);
 	fout << "Verify:\n" << ibMtx3::Mul(a, ibMtx3::Invert(a));
 	fout.flush();
+}
+
+void TestOperators()
+{
+	WriteHeader(fout, "Non-assignment operators");
+	ibMtx3 a( 1, 2, 3, 3, 2, 1, 2, 1, 3 );
+	ibMtx3 b( 3, 2, 1, 2, 1, 3, 1, 3, 2 );
+	fout << "A:\n" << a << "B:\n" << b;
+	fout << "A + B:\n" << a + b;
+	fout << "A - B:\n" << a - b;
+	fout << "A * 2:\n" << a * 2;
+	fout << "2 * A:\n" << 2 * a;
+	fout << "A * B:\n" << a * b;
+
+	WriteHeader(fout, "Assignment operators");
+	fout << "A:\n" << a << "B:\n" << b;
+	fout << "A += B:\n" << (a += b);
+	a -= b;
+	fout << "A -= B:\n" << (a -= b);
+	a += b;
+	fout << "A *= 2:\n" << (a *= 2);
+	a *= .5f;
+	fout << "A *= B:\n" << (a *= b);
 }
 
 extern "C"

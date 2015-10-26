@@ -24,7 +24,7 @@ public:
 	ibQuat& Invert();
 	ibQuat GetConjugate() const; // Assumes normalized
 	ibQuat GetInverse() const;
-	ibMtx GetMatrix() const;
+	ibMtx4 GetMatrix() const;
 
 	void ToAxisAngle( ibVec3* axis, float* angle ) const;
 

@@ -19,12 +19,12 @@ ibVec2& ibVec2::operator= ( const ibVec2& rhs )
 	return *this;
 }
 
-float ibVec2::Magnitude() const
+f32 ibVec2::Magnitude() const
 {
 	return sqrt(MagnitudeS());
 }
 
-float ibVec2::MagnitudeS() const
+f32 ibVec2::MagnitudeS() const
 {
 	return (x * x) + (y * y);
 }
@@ -73,7 +73,7 @@ ibVec2& ibVec2::Mul( const ibMtx2& rhs )
 	return *this;
 }
 
-f32 ibVec2::Dot( const ibVec2& rhs)
+f32 ibVec2::Dot( const ibVec2& rhs) const
 {
 	return (x * rhs.x) + (y * rhs.y);
 }
@@ -112,7 +112,7 @@ ibVec2 ibVec2::Mul( const ibVec2& lhs, const ibMtx2& rhs )
 
 f32 ibVec2::Dot( const ibVec2& lhs, const ibVec2& rhs )
 {
-	return (lhs.x * rhs.x) + (lhs.y * rhs.y);
+	return lhs.Dot(rhs);
 }
 
 ibVec2 ibVec2::Stabelize( const ibVec2& v )

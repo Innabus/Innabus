@@ -71,6 +71,9 @@
     <ClCompile Include="src\ibMtx4.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="src\ibVec4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
@@ -200,6 +203,9 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="include\ibMtx4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibVec4.h">
       <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>

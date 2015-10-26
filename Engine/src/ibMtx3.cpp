@@ -35,7 +35,7 @@ ibMtx3& ibMtx3::operator= ( const ibMtx3& rhs )
 }
 
 // Members work in place
-ibMtx3& ibMtx3::Scale( const float f )
+ibMtx3& ibMtx3::Scale( const f32 f )
 {
 	for (u32 n = 0; n < 9; ++n)
 	{

@@ -11,7 +11,7 @@ public:
 	ibMtx2& operator= ( const ibMtx2& rhs );
 
 	// Members work in place
-	ibMtx2& Scale( const float f ); // Scalar multiply
+	ibMtx2& Scale( const f32 f ); // Scalar multiply
 
 	ibMtx2& Add( const ibMtx2& rhs );
 	ibMtx2& Sub( const ibMtx2& rhs );

@@ -5,7 +5,7 @@
 
 namespace ibMath
 {
-	const float Pi = 3.14159265f;
+	const f32 Pi = 3.14159265f;
 }
 
 inline

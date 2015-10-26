@@ -116,7 +116,7 @@ ibQuat ibQuat::GetInverse() const
 	return ibQuat( w * length, x * -length, y * -length, z * -length );
 }
 
-ibMtx ibQuat::GetMatrix() const
+ibMtx4 ibQuat::GetMatrix() const
 {
 	float x2 = x * x;
 	float y2 = y * y;
@@ -131,10 +131,10 @@ ibMtx ibQuat::GetMatrix() const
 	// This calculation would be a lot more complicated for non-unit length quaternions
 	// Note: The constructor of Matrix4 expects the Matrix in column-major format like expected by
 	//   OpenGL
-	return ibMtx( 1.0f - 2.0f * (y2 + z2), 2.0f * (xy + wz),        2.0f * (xz - wy),        0.0f,
-			      2.0f * (xy - wz),        1.0f - 2.0f * (x2 + z2), 2.0f * (yz + wx),        0.0f,
-			      2.0f * (xz + wy),        2.0f * (yz - wx),        1.0f - 2.0f * (x2 + y2), 0.0f,
-			      0.0f,                    0.0f,                    0.0f,                    1.0f);
+	return ibMtx4( 1.0f - 2.0f * (y2 + z2), 2.0f * (xy + wz),        2.0f * (xz - wy),        0.0f,
+			       2.0f * (xy - wz),        1.0f - 2.0f * (x2 + z2), 2.0f * (yz + wx),        0.0f,
+			       2.0f * (xz + wy),        2.0f * (yz - wx),        1.0f - 2.0f * (x2 + y2), 0.0f,
+			       0.0f,                    0.0f,                    0.0f,                    1.0f);
 }
 
 void ibQuat::ToAxisAngle( ibVec3* axis, float* angle ) const

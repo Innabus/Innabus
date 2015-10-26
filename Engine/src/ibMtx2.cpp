@@ -31,7 +31,7 @@ ibMtx2& ibMtx2::operator= ( const ibMtx2& rhs )
 }
 
 // Members work in place
-ibMtx2& ibMtx2::Scale( const float f )
+ibMtx2& ibMtx2::Scale( const f32 f )
 {
 	for (u32 n = 0; n < 4; ++n)
 		data.f[n] *= f;
@@ -88,7 +88,7 @@ ibMtx2& ibMtx2::Stabelize()
 }
 
 // non Member
-ibMtx2 ibMtx2::Scale( const ibMtx2& mtx, const float f )
+ibMtx2 ibMtx2::Scale( const ibMtx2& mtx, const f32 f )
 {
 	return ibMtx2(mtx).Scale(f);
 }

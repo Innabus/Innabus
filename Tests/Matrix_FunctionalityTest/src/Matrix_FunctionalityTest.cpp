@@ -12,7 +12,7 @@ std::mt19937 s_rng;
 
 f32 rand_flt(f32 min = 0.f, f32 max = 1.f)
 {
-	std::uniform_real_distribution<float> ud(min, max);
+	std::uniform_real_distribution<f32> ud(min, max);
 	return ud(s_rng);
 }
 
@@ -21,12 +21,12 @@ ibVec3 RandVector()
 	return ibVec3(rand_flt(), rand_flt(), rand_flt());
 }
 
-ibMtx RandMatrix()
+ibMtx4 RandMatrix()
 {
-	return ibMtx(rand_flt(), rand_flt(), rand_flt(), rand_flt(),
-		         rand_flt(), rand_flt(), rand_flt(), rand_flt(),
-				 rand_flt(), rand_flt(), rand_flt(), rand_flt(),
-				 rand_flt(), rand_flt(), rand_flt(), rand_flt());
+	return ibMtx4(rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+		          rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+				  rand_flt(), rand_flt(), rand_flt(), rand_flt(),
+				  rand_flt(), rand_flt(), rand_flt(), rand_flt());
 }
 
 std::ostream& operator<<(std::ostream& o, const ibVec3& v)
@@ -35,7 +35,7 @@ std::ostream& operator<<(std::ostream& o, const ibVec3& v)
 	return o;
 }
 
-std::ostream& operator<<(std::ostream& o, const ibMtx& m)
+std::ostream& operator<<(std::ostream& o, const ibMtx4& m)
 {
 	o << "[ [ "<< m.data.mtx._00 << ", " << m.data.mtx._01 << ", " << m.data.mtx._02 << ", " << m.data.mtx._03 << " ]  \n";
 	o << "  [ "<< m.data.mtx._10 << ", " << m.data.mtx._11 << ", " << m.data.mtx._12 << ", " << m.data.mtx._13 << " ]  \n";
@@ -50,7 +50,7 @@ void WriteHeader(std::ostream& o, const std::string& s)
 	o << "\\\\\n\\\\ " << s << "\n\\\\" << std::endl;
 }
 
-ibMtx& StabelizeMatrix(ibMtx& m)
+ibMtx4& StabelizeMatrix(ibMtx4& m)
 {
 	for (u32 i = 0; i < 4; ++i)
 	{
@@ -63,31 +63,27 @@ ibMtx& StabelizeMatrix(ibMtx& m)
 	return m;
 }
 
-void ScaleTranslateTest(std::ostream& o, ibMtx m)
+void ScaleTranslateTest(std::ostream& o, ibMtx4 m)
 {
-	ibMtx copy = m;
+	ibMtx4 copy = m;
 	ibVec3 v = ibVec3(4, 5, -2);
 	o << "Scale: 2.5f\n";
 	o << copy.Scale(2.5f) << std::endl;
-	o << "Scale axes:\n" << v << "\n";
-	o << (copy = m).ScaleAxes(v) << std::endl;
 	o << "Translate:\n" << v << "\n" << m.Translate(v) << std::endl;
 }
 
-void ScaleTranslateCopyTest(std::ostream& o, ibMtx m)
+void ScaleTranslateCopyTest(std::ostream& o, ibMtx4 m)
 {
 	ibVec3 v = RandVector();
 	o << "Scale: 2.5f\n";
-	o << ibMtx::Scale(m, 2.5f) << std::endl;
-	o << "Scale axes:\n" << v << "\n";
-	o << ibMtx::ScaleAxes(m, v) << std::endl;
-	o << "Translate:\n" << v << "\n" << ibMtx::Translate(m, v) << std::endl;
+	o << ibMtx4::Scale(m, 2.5f) << std::endl;
+	o << "Translate:\n" << v << "\n" << ibMtx4::Translate(m, v) << std::endl;
 }
 
-void InPlaceArithmeticTest(std::ostream& o, ibMtx a, ibMtx b)
+void InPlaceArithmeticTest(std::ostream& o, ibMtx4 a, ibMtx4 b)
 {
-	ibMtx copy = a;
-	ibMtx inv = a;
+	ibMtx4 copy = a;
+	ibMtx4 inv = a;
 	o << "A + B\n" << a.Add(b) << "\n";
 	a = copy;
 	o << "A - B\n" << a.Sub(b) << "\n";
@@ -99,14 +95,14 @@ void InPlaceArithmeticTest(std::ostream& o, ibMtx a, ibMtx b)
 	o << "Verify\n" << StabelizeMatrix(copy.Mul(inv)) << "\n";
 }
 
-void CopyArithmeticTest(std::ostream& o, ibMtx a, ibMtx b)
+void CopyArithmeticTest(std::ostream& o, ibMtx4 a, ibMtx4 b)
 {
-	o << "A + B\n" << ibMtx::Add(a, b) << "\n";
-	o << "A - B\n" << ibMtx::Sub(a, b) << "\n";
-	o << "A * B\n" << ibMtx::Mul(a, b) << "\n";
-	o << "A^T\n" << ibMtx::Transpose(a) << "\n";
-	o << "A^-1\n" << ibMtx::Invert(a) << "\n";
-	ibMtx ainv = ibMtx::Mul(a, ibMtx::Invert(a));
+	o << "A + B\n" << ibMtx4::Add(a, b) << "\n";
+	o << "A - B\n" << ibMtx4::Sub(a, b) << "\n";
+	o << "A * B\n" << ibMtx4::Mul(a, b) << "\n";
+	o << "A^T\n" << ibMtx4::Transpose(a) << "\n";
+	o << "A^-1\n" << ibMtx4::Invert(a) << "\n";
+	ibMtx4 ainv = ibMtx4::Mul(a, ibMtx4::Invert(a));
 	o << "Verify\n" << StabelizeMatrix(ainv) << "\n";
 }
 
@@ -116,7 +112,7 @@ int GameMain()
 	std::ofstream fout = std::ofstream("out.txt");
 	s_rng.seed(1729);
 
-	ibMtx id = ibMtx::IDENTITY;
+	ibMtx4 id = ibMtx4::IDENTITY;
 	fout << "Let ID = \n" << id;
 
 	WriteHeader(fout, "Scale and translate on ID");
@@ -124,7 +120,7 @@ int GameMain()
 	WriteHeader(fout, "Scale and translate with ID");
 	ScaleTranslateCopyTest(fout, id);
 
-	ibMtx a = RandMatrix(), b = RandMatrix();
+	ibMtx4 a = RandMatrix(), b = RandMatrix();
 	fout << "Let A = \n" << a;
 	fout << "Let B = \n" << b;
 	WriteHeader(fout, "Matrix arithmetic (in place)");

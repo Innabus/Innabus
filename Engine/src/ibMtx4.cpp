@@ -7,65 +7,57 @@
 
 namespace
 {
-	void fswap( float& l, float& r )
+	void fswap( f32& l, f32& r )
 	{
-		float tmp = l;
+		f32 tmp = l;
 		l = r;
 		r = tmp;
 	}
 }
 
-const ibMtx ibMtx::ZERO     = ibMtx( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
-const ibMtx ibMtx::IDENTITY = ibMtx( 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 );
+const ibMtx4 ibMtx4::ZERO     = ibMtx4( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
+const ibMtx4 ibMtx4::IDENTITY = ibMtx4( 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 );
 
-ibMtx::ibMtx( 
-	float a, float b, float c, float d,
-	float e, float f, float g, float h,
-	float i, float j, float k, float l,
-	float m, float n, float o, float p )
+ibMtx4::ibMtx4( 
+	f32 a, f32 b, f32 c, f32 d,
+	f32 e, f32 f, f32 g, f32 h,
+	f32 i, f32 j, f32 k, f32 l,
+	f32 m, f32 n, f32 o, f32 p )
 {
-	float* pf = data.a[0];
+	f32* pf = data.a[0];
 	*pf++ = a; *pf++ = b; *pf++ = c; *pf++ = d;
 	*pf++ = e; *pf++ = f; *pf++ = g; *pf++ = h;
 	*pf++ = i; *pf++ = j; *pf++ = k; *pf++ = l;
 	*pf++ = m; *pf++ = n; *pf++ = o; *pf++ = p;
 }
 
-ibMtx::ibMtx( const ibMtx& rhs )
+ibMtx4::ibMtx4( const ibMtx4& rhs )
 {
-	float* to = data.a[0];
-	const float* from = rhs.data.a[0];
+	f32* to = data.a[0];
+	const f32* from = rhs.data.a[0];
 	for ( unsigned n = 0; n < 16; ++n )
 		*to++ = *from++;
 }
 
-ibMtx& ibMtx::operator= ( const ibMtx& rhs )
+ibMtx4& ibMtx4::operator= ( const ibMtx4& rhs )
 {
-	float* to = data.a[0];
-	const float* from = rhs.data.a[0];
+	f32* to = data.a[0];
+	const f32* from = rhs.data.a[0];
 	for ( unsigned n = 0; n < 16; ++n )
 		*to++ = *from++;
 	return *this;
 }
 
 // Members work in place
-ibMtx& ibMtx::Scale( const float f ) // Scalar multiply
+ibMtx4& ibMtx4::Scale( const f32 f ) // Scalar multiply
 {
-	float* to = data.a[0];
+	f32* to = data.a[0];
 	for ( unsigned n = 0; n < 16; ++n )
 		*to++ *= f;
 	return *this;
 }
 
-ibMtx& ibMtx::ScaleAxes( const ibVec3& v ) // Scale on all three axis
-{
-	data.mtx._00 *= v.x;
-	data.mtx._11 *= v.y;
-	data.mtx._22 *= v.z;
-	return *this;
-}
-
-ibMtx& ibMtx::Translate( const ibVec3& rhs )
+ibMtx4& ibMtx4::Translate( const ibVec3& rhs )
 {
 	data.mtx._03 += rhs.x;
 	data.mtx._13 += rhs.y;
@@ -73,37 +65,37 @@ ibMtx& ibMtx::Translate( const ibVec3& rhs )
 	return *this;
 }
 
-ibMtx& ibMtx::Add( const ibMtx& rhs )
+ibMtx4& ibMtx4::Add( const ibMtx4& rhs )
 {
-	float* to = data.a[0];
-	const float* from = rhs.data.a[0];
+	f32* to = data.a[0];
+	const f32* from = rhs.data.a[0];
 	for ( unsigned n = 0; n < 16; ++n )
 		*to++ += *from++;
 	return *this;
 }
 
-ibMtx& ibMtx::Sub( const ibMtx& rhs )
+ibMtx4& ibMtx4::Sub( const ibMtx4& rhs )
 {
-	float* to = data.a[0];
-	const float* from = rhs.data.a[0];
+	f32* to = data.a[0];
+	const f32* from = rhs.data.a[0];
 	for ( unsigned n = 0; n < 16; ++n )
 		*to++ -= *from++;
 	return *this;
 }
 
-ibMtx& ibMtx::Mul( const ibMtx& rhs )
+ibMtx4& ibMtx4::Mul( const ibMtx4& rhs )
 {
-	float f[4];
+	f32 f[4];
 	for ( unsigned row = 0; row < 4; ++row )
 	{
-		memcpy( f, data.a[row], sizeof(float) * 4 );
+		memcpy( f, data.a[row], sizeof(f32) * 4 );
 		for ( unsigned n = 0; n < 4; ++n )
 			data.a[row][n] = f[0] * rhs.data.a[0][n] + f[1] * rhs.data.a[1][n] + f[2] * rhs.data.a[2][n] + f[3] * rhs.data.a[3][n];
 	}
 	return *this;
 }
 
-ibMtx& ibMtx::Transpose()
+ibMtx4& ibMtx4::Transpose()
 {
 	fswap( data.mtx._01, data.mtx._10 );
 	fswap( data.mtx._02, data.mtx._20 );
@@ -116,15 +108,15 @@ ibMtx& ibMtx::Transpose()
 
 #pragma warning ( push )
 #pragma warning ( disable: 4700 )
-ibMtx& ibMtx::Invert()
+ibMtx4& ibMtx4::Invert()
 {
-	float* src = &data.a[0][0];
+	f32* src = &data.a[0][0];
 	__m128 minor0, minor1, minor2, minor3;
 	__m128 row0, row1, row2, row3;
 	__m128 det, tmp1;
 #if !defined NDEBUG || defined STATIC
 	// Suppress RTC error for uninit vars
-	float init = 0.f;
+	f32 init = 0.f;
 	row3 = row1 = tmp1 = _mm_load_ps1( &init );
 #endif // NDEBUG
 	tmp1 = _mm_loadh_pi(_mm_loadl_pi(tmp1, (__m64*)(src)), (__m64*)(src+ 4));
@@ -211,51 +203,60 @@ ibMtx& ibMtx::Invert()
 }
 #pragma warning ( pop )
 
-// non Member
-ibMtx ibMtx::Scale( const ibMtx& mtx, const float f )
+ibMtx4& ibMtx4::Stabelize()
 {
-	ibMtx ret( mtx );
+	for (u32 n = 0; n < 16; ++n)
+	{
+		if (fabs(data.f[n]) < IB_EPSILON_F)
+			data.f[n] = 0;
+	}
+	return *this;
+}
+
+// non Member
+ibMtx4 ibMtx4::Scale( const ibMtx4& mtx, const f32 f )
+{
+	ibMtx4 ret( mtx );
 	return ret.Scale( f );
 }
 
-ibMtx ibMtx::ScaleAxes( const ibMtx& mtx, const ibVec3& vec )
+ibMtx4 ibMtx4::Translate( const ibMtx4& mtx, const ibVec3& vec )
 {
-	ibMtx ret( mtx );
-	return ret.ScaleAxes( vec );
-}
-
-ibMtx ibMtx::Translate( const ibMtx& mtx, const ibVec3& vec )
-{
-	ibMtx ret( mtx );
+	ibMtx4 ret( mtx );
 	return ret.Translate( vec );
 }
 
-ibMtx ibMtx::Add( const ibMtx& lhs, const ibMtx& rhs )
+ibMtx4 ibMtx4::Add( const ibMtx4& lhs, const ibMtx4& rhs )
 {
-	ibMtx ret( lhs );
+	ibMtx4 ret( lhs );
 	return ret.Add( rhs );
 }
 
-ibMtx ibMtx::Sub( const ibMtx& lhs, const ibMtx& rhs )
+ibMtx4 ibMtx4::Sub( const ibMtx4& lhs, const ibMtx4& rhs )
 {
-	ibMtx ret( lhs );
+	ibMtx4 ret( lhs );
 	return ret.Sub( rhs );
 }
 
-ibMtx ibMtx::Mul( const ibMtx& lhs, const ibMtx& rhs )
+ibMtx4 ibMtx4::Mul( const ibMtx4& lhs, const ibMtx4& rhs )
 {
-	ibMtx ret( lhs );
+	ibMtx4 ret( lhs );
 	return ret.Mul( rhs );
 }
 
-ibMtx ibMtx::Transpose( const ibMtx& mtx )
+ibMtx4 ibMtx4::Transpose( const ibMtx4& mtx )
 {
-	ibMtx ret( mtx );
+	ibMtx4 ret( mtx );
 	return ret.Transpose();
 }
 
-ibMtx ibMtx::Invert( const ibMtx& mtx )
+ibMtx4 ibMtx4::Invert( const ibMtx4& mtx )
 {
-	ibMtx ret(mtx);
+	ibMtx4 ret(mtx);
 	return ret.Invert();
+}
+
+ibMtx4 ibMtx4::Stabelize( const ibMtx4& mtx )
+{
+	return ibMtx4(mtx).Stabelize();
 }

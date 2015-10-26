@@ -10,7 +10,7 @@ const ibVec3 ibVec3::X_AXIS = ibVec3( 1, 0, 0 );
 const ibVec3 ibVec3::Y_AXIS = ibVec3( 0, 1, 0 );
 const ibVec3 ibVec3::Z_AXIS = ibVec3( 0, 0, 1 );
 
-ibVec3::ibVec3( const float _x, const float _y, const float _z ):
+ibVec3::ibVec3( const f32 _x, const f32 _y, const f32 _z ):
 x(_x), y(_y), z(_z)
 {
 }
@@ -29,19 +29,19 @@ ibVec3& ibVec3::operator= ( const ibVec3& rhs )
 }
 
 
-float ibVec3::Magnitude() const
+f32 ibVec3::Magnitude() const
 {
 	return sqrt( MagnitudeS() );
 }
 
-float ibVec3::MagnitudeS() const // Like magnitude, but does not sqrt (equivalent to A.Dot(A))
+f32 ibVec3::MagnitudeS() const // Like magnitude, but does not sqrt (equivalent to A.Dot(A))
 {
 	return x*x + y*y + z*z;
 }
 
 ibVec3& ibVec3::Normalize()
 {
-	if ( float m = Magnitude() )
+	if ( f32 m = Magnitude() )
 	{
 		x /= m;
 		y /= m;
@@ -52,7 +52,7 @@ ibVec3& ibVec3::Normalize()
 
 ibVec3& ibVec3::NormalizeCopy( ibVec3& to ) const
 {
-	if ( float m = Magnitude() )
+	if ( f32 m = Magnitude() )
 	{
 		to.x = x / m;
 		to.y = y / m;
@@ -79,7 +79,7 @@ ibVec3& ibVec3::Sub( const ibVec3& rhs )
 	return *this;
 }
 
-ibVec3& ibVec3::Mul( const float rhs )
+ibVec3& ibVec3::Mul( const f32 rhs )
 {
 	x *= rhs;
 	y *= rhs;
@@ -89,15 +89,15 @@ ibVec3& ibVec3::Mul( const float rhs )
 
 ibVec3& ibVec3::Mul( const ibMtx3& rhs)
 {
-	float xp = (x * rhs.data.mtx._00) 
+	f32 xp = (x * rhs.data.mtx._00) 
 		     + (y * rhs.data.mtx._10)
 			 + (z * rhs.data.mtx._20);
 
-	float yp = (x * rhs.data.mtx._01) 
+	f32 yp = (x * rhs.data.mtx._01) 
 		     + (y * rhs.data.mtx._11)
 			 + (z * rhs.data.mtx._21);
 
-	float zp = (x * rhs.data.mtx._02) 
+	f32 zp = (x * rhs.data.mtx._02) 
 		     + (y * rhs.data.mtx._12)
 			 + (z * rhs.data.mtx._22);
 
@@ -107,16 +107,16 @@ ibVec3& ibVec3::Mul( const ibMtx3& rhs)
 	return *this;
 }
 
-float ibVec3::Dot( const ibVec3& rhs )
+f32 ibVec3::Dot( const ibVec3& rhs ) const
 {
 	return x * rhs.x + y * rhs.y + z * rhs.z;
 }
 
 ibVec3& ibVec3::Cross( const ibVec3& rhs )
 {
-	float x_ = y * rhs.z - z * rhs.y;
-	float y_ = z * rhs.x - x * rhs.z;
-	float z_ = x * rhs.y - y * rhs.x;
+	f32 x_ = y * rhs.z - z * rhs.y;
+	f32 y_ = z * rhs.x - x * rhs.z;
+	f32 z_ = x * rhs.y - y * rhs.x;
 	x = x_;
 	y = y_;
 	z = z_;
@@ -145,12 +145,12 @@ ibVec3 ibVec3::Sub( const ibVec3& lhs, const ibVec3& rhs )
 	return ibVec3( lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z );
 }
 
-ibVec3 ibVec3::Mul( const float lhs, const ibVec3& rhs )
+ibVec3 ibVec3::Mul( const f32 lhs, const ibVec3& rhs )
 {
 	return ibVec3( lhs * rhs.x, lhs * rhs.y, lhs * rhs.z );
 }
 
-ibVec3 ibVec3::Mul( const ibVec3& lhs, const float rhs )
+ibVec3 ibVec3::Mul( const ibVec3& lhs, const f32 rhs )
 {
 	return ibVec3( rhs * lhs.x, rhs * lhs.y, rhs * lhs.z );
 }
@@ -160,9 +160,9 @@ ibVec3 ibVec3::Mul( const ibVec3& lhs, const ibMtx3& rhs )
 	return ibVec3(lhs).Mul(rhs);
 }
 
-float ibVec3::Dot( const ibVec3& lhs, const ibVec3& rhs )
+f32 ibVec3::Dot( const ibVec3& lhs, const ibVec3& rhs )
 {
-	return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
+	return lhs.Dot(rhs);
 }
 
 ibVec3 ibVec3::Cross( const ibVec3& lhs, const ibVec3& rhs )

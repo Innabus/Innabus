@@ -1,5 +1,5 @@
-#ifndef IB_VECTOR_H
-#define IB_VECTOR_H
+#ifndef IB_VEC3_H
+#define IB_VEC3_H
 #pragma once
 
 #include "ibMath.h"
@@ -10,12 +10,12 @@ class IB_EXPORT ibVec3
 {
 public:
 	ibVec3() {}; // No default init!
-	ibVec3( const float _x, const float _y, const float _z );
+	ibVec3( const f32 _x, const f32 _y, const f32 _z );
 	ibVec3( const ibVec3& rhs );
 	ibVec3& operator= ( const ibVec3& rhs );
 
-	float Magnitude() const;
-	float MagnitudeS() const; // Like magnitude, but does not sqrt
+	f32 Magnitude() const;
+	f32 MagnitudeS() const; // Like magnitude, but does not sqrt
 
 	ibVec3& Normalize();
 	ibVec3& NormalizeCopy( ibVec3& to ) const;
@@ -23,9 +23,9 @@ public:
 	// Member versions work "in place"
 	ibVec3& Add( const ibVec3& rhs );
 	ibVec3& Sub( const ibVec3& rhs );
-	ibVec3& Mul( const float rhs );
+	ibVec3& Mul( const f32 rhs );
 	ibVec3& Mul( const ibMtx3& rhs);
-	float Dot( const ibVec3& rhs );
+	f32 Dot( const ibVec3& rhs ) const;
 	ibVec3& Cross( const ibVec3& rhs );
 
 	ibVec3& Stabelize();
@@ -33,16 +33,16 @@ public:
 	// Non-member
 	static ibVec3 Add( const ibVec3& lhs, const ibVec3& rhs );
 	static ibVec3 Sub( const ibVec3& lhs, const ibVec3& rhs );
-	static ibVec3 Mul( const float lhs, const ibVec3& rhs );
-	static ibVec3 Mul( const ibVec3& lhs, const float rhs );
+	static ibVec3 Mul( const f32 lhs, const ibVec3& rhs );
+	static ibVec3 Mul( const ibVec3& lhs, const f32 rhs );
 	static ibVec3 Mul( const ibVec3& lhs, const ibMtx3& rhs );
-	static float Dot( const ibVec3& lhs, const ibVec3& rhs );
+	static f32 Dot( const ibVec3& lhs, const ibVec3& rhs );
 	static ibVec3 Cross( const ibVec3& lhs, const ibVec3& rhs );
 
 	static ibVec3 Stabelize( const ibVec3& v );
 
 	// Data
-	float x, y, z;
+	f32 x, y, z;
 
 	static const ibVec3 ZERO; // { 0, 0, 0 }
 	static const ibVec3 ONE; // { 1, 1, 1 }
@@ -64,10 +64,8 @@ inline ibVec3& operator*= ( ibVec3& lhs, const f32 rhs ) { return lhs.Mul(rhs); 
 inline ibVec3& operator*= ( ibVec3& lhs, const ibMtx3& rhs ) { return lhs.Mul(rhs); }
 
 inline bool operator==( const ibVec3& lhs, const ibVec3& rhs ) { 	
-	return (fabs(lhs.x - rhs.x) < IB_EPSILON_F ) &&
-		   (fabs(lhs.y - rhs.y) < IB_EPSILON_F ) &&
-		   (fabs(lhs.z - rhs.z) < IB_EPSILON_F );
+	return fcmp(lhs.x, rhs.x) && fcmp(lhs.y, rhs.y) && fcmp(lhs.z, rhs.z);
 }
 inline bool operator!=( const ibVec3& lhs, const ibVec3& rhs ) { return !(lhs == rhs); }
 
-#endif // IB_VECTOR_H
+#endif // IB_VEC3_H
