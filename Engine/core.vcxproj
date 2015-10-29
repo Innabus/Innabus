@@ -192,7 +192,6 @@
     <ClCompile Include="src\ibVec2.cpp" />
     <ClCompile Include="src\ibVec3.cpp" />
     <ClCompile Include="src\ibVec4.cpp" />
-    <ClCompile Include="src\test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\sqlite3\sqlite3.h" />
@@ -229,7 +228,6 @@
     <ClInclude Include="include\ibVec2.h" />
     <ClInclude Include="include\ibVec3.h" />
     <ClInclude Include="include\ibVec4.h" />
-    <ClInclude Include="include\test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\ibMemory.inl" />
