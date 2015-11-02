@@ -7,7 +7,7 @@
 
 class ibVec3;
 
-class ibQuat
+class IB_EXPORT ibQuat
 {
 public:
 	ibQuat();
