@@ -10,6 +10,7 @@ namespace Innabus {
 	{
 		public ref class Quaternion
 		{
+		public:
 			Quaternion() { m_quat = new ibQuat; }
 			Quaternion( const f32 _w, const f32 _x, const f32 _y, const f32 _z ) {
 				m_quat = new ibQuat(_w, _x, _y, _z); 
@@ -26,6 +27,11 @@ namespace Innabus {
 			Quaternion% operator= (Quaternion% rhs) { *m_quat = *rhs.m_quat; return *this; }
 			~Quaternion() { this->!Quaternion(); }
 			!Quaternion() { delete m_quat; }
+
+			virtual String^ ToString() override
+			{
+				return String::Format("[{0}, {1}, {2}, {3}]", w, x, y, z);
+			}
 
 			f32 Magnitude() { return m_quat->Magnitude(); }
 			f32 MagnitudeS() { return m_quat->MagnitudeS(); }

@@ -43,6 +43,15 @@ namespace Innabus {
 
 			static Matrix3^ Stabelize( Matrix3^ mtx ) { return (gcnew Matrix3(mtx))->Stabelize(); }
 
+			virtual String^ ToString() override
+			{
+				return String::Format("[[{0}, {1}, {2}], [{3}, {4}, {5}], [{6} , {7}, {8}]]", 
+					m_matrix->data.f[0], m_matrix->data.f[1], m_matrix->data.f[2],
+					m_matrix->data.f[3], m_matrix->data.f[4], m_matrix->data.f[5],
+					m_matrix->data.f[6], m_matrix->data.f[7], m_matrix->data.f[8]
+				);
+			}
+
 			ibMtx3* m_matrix;
 
 			static Matrix3^ operator+ ( Matrix3^ lhs, Matrix3^ rhs ) { return Matrix3::Add(lhs, rhs); }

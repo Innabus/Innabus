@@ -47,7 +47,7 @@ namespace Innabus {
 
 			virtual String^ ToString() override
 			{
-				return String::Format("[{0}, {1}, {2}]", x, y, z);
+				return String::Format("[{0}, {1}, {2}, {3}]", x, y, z, w);
 			}
 
 			property float x {

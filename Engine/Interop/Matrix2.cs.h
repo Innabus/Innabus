@@ -45,6 +45,13 @@ namespace Innabus {
 			static Matrix2^ Rotation( f32 angle ) { return gcnew Matrix2(ibMtx2::Rotation(angle)); }
 			static Matrix2^ Stabelize( Matrix2^ mtx ) { return (gcnew Matrix2(mtx))->Stabelize(); }
 
+			virtual String^ ToString() override
+			{
+				return String::Format("[[{0}, {1}], [{2}, {3}]]", 
+					m_matrix->data.f[0], m_matrix->data.f[1], m_matrix->data.f[2], m_matrix->data.f[3]
+				);
+			}
+
 			ibMtx2* m_matrix;
 
 			static Matrix2^ operator+ ( Matrix2^ lhs, Matrix2^ rhs ) { return Matrix2::Add(lhs, rhs); }
