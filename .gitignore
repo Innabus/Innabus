@@ -3,6 +3,7 @@
 *.suo
 *.user
 *.opensdf
+*.ipch
 
 # Build folders
 build/
