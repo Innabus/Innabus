@@ -4,6 +4,7 @@
 
 class ibVec3;
 class ibVec4;
+class ibQuat;
 
 class IB_EXPORT ibMtx4
 {
@@ -37,6 +38,18 @@ public:
 	static ibMtx4 Mul( const ibMtx4& lhs, const ibMtx4& rhs );
 	static ibMtx4 Transpose( const ibMtx4& mtx );
 	static ibMtx4 Invert( const ibMtx4& mtx );
+
+	static ibMtx4 RotateX( f32 angle );
+	static ibMtx4 RotateY( f32 angle );
+	static ibMtx4 RotateZ( f32 angle );
+
+	static ibMtx4 RotateEuler( f32 yaw, f32 pitch, f32 roll );
+	static ibMtx4 RotateAxisAngle( ibVec3 axis, const f32 angle );
+	static ibMtx4 RotateAxisAngle( ibVec4 axis, const f32 angle );
+	static ibMtx4 RotateQuaternion( const ibQuat& quaternion );
+
+	static void GetAxisAngle( const ibMtx4&, ibVec3* pAxis, f32* pAngle );
+	static void GetAxisAngle( const ibMtx4&, ibVec4* pAxis, f32* pAngle );
 
 	static ibMtx4 Stabelize( const ibMtx4& mtx );
 

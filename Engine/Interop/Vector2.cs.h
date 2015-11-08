@@ -72,7 +72,7 @@ namespace Innabus {
 			static Vector2^ operator*= ( Vector2^ lhs, const f32 scale ) { return lhs->Mul(scale); }
 			static f32 operator*= ( Vector2^ lhs, Vector2^ rhs ) { return lhs->Dot(rhs); }
 
-			static bool operator==( Vector2^ lhs, Vector2^ rhs ) { return lhs->m_vector == rhs->m_vector; }
+			static bool operator==( Vector2^ lhs, Vector2^ rhs ) { return *lhs->m_vector == *rhs->m_vector; }
 			static bool operator!=( Vector2^ lhs, Vector2^ rhs ) { return !(lhs == rhs); }
 
 			ibVec2* m_vector;

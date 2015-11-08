@@ -2,6 +2,9 @@
 #define IB_MTX3_H
 #pragma once
 
+class ibVec3;
+class ibQuat;
+
 class IB_EXPORT ibMtx3
 {
 public:
@@ -29,6 +32,17 @@ public:
 	static ibMtx3 Mul( const ibMtx3& lhs, const ibMtx3& rhs );
 	static ibMtx3 Transpose( const ibMtx3& mtx );
 	static ibMtx3 Invert( const ibMtx3& mtx );
+
+	static ibMtx3 RotateX( f32 angle );
+	static ibMtx3 RotateY( f32 angle );
+	static ibMtx3 RotateZ( f32 angle );
+
+	static ibMtx3 RotateEuler( f32 yaw, f32 pitch, f32 roll );
+	static ibMtx3 RotateAxisAngle( ibVec3 axis, const f32 angle );
+	static ibMtx3 RotateQuaternion( const ibQuat& quaternion );
+
+	static void GetAxisAngle( const ibMtx3& mtx, ibVec3* pAxis, f32* pAngle );
+	//static void GetEulerAngles( const ibMtx3& mtx, f32* yaw, f32* pitch, f32* roll );
 
 	static ibMtx3 Stabelize( const ibMtx3& mtx );
 

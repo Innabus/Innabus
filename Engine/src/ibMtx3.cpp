@@ -3,6 +3,10 @@
 #include <cmath>
 #include <memory.h>
 
+#include "ibVec3.h"
+#include "ibMtx4.h"
+#include "ibQuat.h"
+
 const ibMtx3 ibMtx3::ZERO     = ibMtx3( 0,  0,  0,  0,  0,  0,  0,  0,  0 );
 const ibMtx3 ibMtx3::ONE      = ibMtx3( 1,  1,  1,  1,  1,  1,  1,  1,  1 );
 const ibMtx3 ibMtx3::FLIP_X   = ibMtx3(-1,  0,  0,  0,  1,  0,  0,  0,  1 );
@@ -164,9 +168,85 @@ ibMtx3 ibMtx3::Invert( const ibMtx3& mtx )
 	return ibMtx3::ZERO;
 }
 
-// ibMtx3 ibMtx3::Rotation( f32 angle );
+ibMtx3 ibMtx3::RotateX( f32 angle )
+{
+	return ibMtx3(1,      0,         0,
+		          0,  cos(angle), sin(angle),
+				  0, -sin(angle), cos(angle));
+}
+
+ibMtx3 ibMtx3::RotateY( f32 angle )
+{
+	return ibMtx3(cos(angle), 0, -sin(angle),
+		              0,      1,      0,
+			      sin(angle), 0,  cos(angle));
+}
+
+ibMtx3 ibMtx3::RotateZ( f32 angle )
+{
+	return ibMtx3( cos(angle), sin(angle), 0,
+		          -sin(angle), cos(angle), 0,
+				       0,          0,      1);
+}
+
+ibMtx3 ibMtx3::RotateAxisAngle( ibVec3 v, const f32 angle )
+{
+	f32 sina = sin(angle);
+	f32 cosa = cos(angle);
+	f32 cosa_1 = 1 - cosa;
+	v.Normalize();
+	f32 x2 = v.x * v.x * cosa_1, y2 = v.y * v.y * cosa_1, z2 = v.z * v.z * cosa_1;
+	f32 xy = v.x * v.y * cosa_1, xz = v.x * v.z * cosa_1, yz = v.y * v.z * cosa_1;
+	f32 xsin = v.x * sina, ysin = v.y * sina, zsin = v.z * sina;
+	return ibMtx3(cosa + x2, xy + zsin, xz - ysin,
+		          xy - zsin, cosa + y2, yz + xsin,
+				  xz + ysin, yz - xsin, cosa + z2);
+}
+
+void ibMtx3::GetAxisAngle( const ibMtx3& mtx, ibVec3* pAxis, f32* pAngle )
+{
+	if (pAngle)
+		*pAngle = acos((mtx.data.mtx._00 + mtx.data.mtx._11 + mtx.data.mtx._22 - 1) / 2);
+	if (pAxis)
+	{
+		pAxis->x = mtx.data.mtx._12 - mtx.data.mtx._21;
+		pAxis->y = mtx.data.mtx._20 - mtx.data.mtx._02;
+		pAxis->z = mtx.data.mtx._01 - mtx.data.mtx._10;
+		pAxis->Normalize();
+	}
+}
+
+ibMtx3 ibMtx3::RotateEuler( f32 yaw, f32 pitch, f32 roll )
+{
+	f32 cy = cos(yaw), sy = sin(yaw);
+	f32 cp = cos(pitch), sp = sin(pitch);
+	f32 cr = cos(roll), sr = sin(roll);
+
+	return ibMtx3( cr*cy + sr*sp*sy, sr * cp, sr*sp*cy - cr*sy,
+		           cr*sp*sy - sr*cy, cr * cp, sr*sy + cr*sp*cy,
+				         cp * sy   ,   -sp  ,    cp * cy      );
+}
+
+ibMtx3 ibMtx3::RotateQuaternion( const ibQuat& quat )
+{
+	ibMtx4 m = quat.GetMatrix();
+	return ibMtx3(m.data.mtx._00, m.data.mtx._01, m.data.mtx._02,
+		          m.data.mtx._10, m.data.mtx._11, m.data.mtx._12,
+				  m.data.mtx._20, m.data.mtx._21, m.data.mtx._22);
+}
+
+/*
+void ibMtx3::GetEulerAngles( const ibMtx3& mtx, f32* yaw, f32* pitch, f32* roll )
+{
+	mtx;
+	if (yaw) *yaw = 0;
+	if (pitch) *pitch = 0;
+	if (roll) * roll = 0;
+}
+*/
 
 ibMtx3 ibMtx3::Stabelize( const ibMtx3& mtx )
 {
 	return ibMtx3(mtx).Stabelize();
 }
+

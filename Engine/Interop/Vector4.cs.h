@@ -13,6 +13,7 @@ namespace Innabus {
 		public:
 			Vector4() { m_vector = new ibVec4; }; // No default init!
 			Vector4( const f32 _x, const f32 _y, const f32 _z, const f32 _w ) { m_vector = new ibVec4(_x, _y, _z, _w); }
+			Vector4( const ibVec4& rhs ) { m_vector = new ibVec4(rhs); }
 			Vector4( Vector4% rhs ) { m_vector = new ibVec4(*rhs.m_vector); }
 			Vector4( Vector4^ rhs ) { m_vector = new ibVec4(*rhs->m_vector); }
 			Vector4% operator= ( Vector4% rhs ) { *m_vector = *rhs.m_vector; return *this; }
@@ -82,7 +83,7 @@ namespace Innabus {
 			static Vector4^ operator*= ( Vector4^ lhs, const f32 scale ) { return lhs->Mul(scale); }
 			static f32 operator*= ( Vector4^ lhs, Vector4^ rhs ) { return lhs->Dot(rhs); }
 
-			static bool operator==( Vector4^ lhs, Vector4^ rhs ) { return lhs->m_vector == rhs->m_vector; }
+			static bool operator==( Vector4^ lhs, Vector4^ rhs ) { return *lhs->m_vector == *rhs->m_vector; }
 			static bool operator!=( Vector4^ lhs, Vector4^ rhs ) { return !(lhs == rhs); }
 
 			ibVec4* m_vector;

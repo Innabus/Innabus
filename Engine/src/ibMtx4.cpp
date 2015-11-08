@@ -1,5 +1,7 @@
 #include "ibMtx4.h"
 #include "ibVec3.h"
+#include "ibVec4.h"
+#include "ibQuat.h"
 
 #include <memory.h>
 
@@ -254,6 +256,92 @@ ibMtx4 ibMtx4::Invert( const ibMtx4& mtx )
 {
 	ibMtx4 ret(mtx);
 	return ret.Invert();
+}
+
+
+ibMtx4 ibMtx4::RotateX( f32 angle )
+{
+	return ibMtx4(1,      0,         0,       0,
+		          0,  cos(angle), sin(angle), 0,
+				  0, -sin(angle), cos(angle), 0,
+				  0,     0,          0,       1);
+}
+
+ibMtx4 ibMtx4::RotateY( f32 angle )
+{
+	return ibMtx4(cos(angle), 0, -sin(angle), 0,
+		              0,      1,      0,      0,
+			      sin(angle), 0,  cos(angle), 0,
+				      0,      0,      0,      1);
+}
+
+ibMtx4 ibMtx4::RotateZ( f32 angle )
+{
+	return ibMtx4( cos(angle), sin(angle), 0, 0,
+		          -sin(angle), cos(angle), 0, 0,
+				       0,          0,      1, 0,
+					   0,          0,      0, 1);
+}
+
+ibMtx4 ibMtx4::RotateAxisAngle( ibVec3 v, const f32 angle )
+{
+	f32 sina = sin(angle);
+	f32 cosa = cos(angle);
+	f32 cosa_1 = 1 - cosa;
+	v.Normalize();
+	f32 x2 = v.x * v.x * cosa_1, y2 = v.y * v.y * cosa_1, z2 = v.z * v.z * cosa_1;
+	f32 xy = v.x * v.y * cosa_1, xz = v.x * v.z * cosa_1, yz = v.y * v.z * cosa_1;
+	f32 xsin = v.x * sina, ysin = v.y * sina, zsin = v.z * sina;
+	return ibMtx4(cosa + x2, xy + zsin, xz - ysin, 0,
+		          xy - zsin, cosa + y2, yz + xsin, 0,
+				  xz + ysin, yz - xsin, cosa + z2, 0,
+				      0,         0,         0,     1);
+}
+
+ibMtx4 ibMtx4::RotateAxisAngle( ibVec4 axis, const f32 angle )
+{
+	return RotateAxisAngle(ibVec3(axis.x, axis.y, axis.z), angle);
+}
+
+void ibMtx4::GetAxisAngle( const ibMtx4& mtx, ibVec3* pAxis, f32* pAngle )
+{
+	if (pAngle)
+		*pAngle = acos((mtx.data.mtx._00 + mtx.data.mtx._11 + mtx.data.mtx._22 - 1) / 2);
+	if (pAxis)
+	{
+		pAxis->x = mtx.data.mtx._12 - mtx.data.mtx._21;
+		pAxis->y = mtx.data.mtx._20 - mtx.data.mtx._02;
+		pAxis->z = mtx.data.mtx._01 - mtx.data.mtx._10;
+		pAxis->Normalize();
+	}
+}
+
+void ibMtx4::GetAxisAngle( const ibMtx4& mtx, ibVec4* pAxis, f32* pAngle )
+{
+	ibVec3 v;
+	f32 a;
+	GetAxisAngle( mtx, &v, &a );
+	if (pAxis)
+		*pAxis = ibVec4(v.x, v.y, v.z, 0);
+	if (pAngle)
+		*pAngle = a;
+}
+
+ibMtx4 ibMtx4::RotateEuler( f32 yaw, f32 pitch, f32 roll )
+{
+	f32 cy = cos(yaw), sy = sin(yaw);
+	f32 cp = cos(pitch), sp = sin(pitch);
+	f32 cr = cos(roll), sr = sin(roll);
+
+	return ibMtx4( cr*cy + sr*sp*sy, sr * cp, sr*sp*cy - cr*sy, 0,
+		           cr*sp*sy - sr*cy, cr * cp, sr*sy + cr*sp*cy, 0,
+				         cp * sy   ,   -sp  ,    cp * cy      , 0,
+						    0      ,    0   ,       0         , 1);
+}
+
+ibMtx4 ibMtx4::RotateQuaternion( const ibQuat& quat )
+{
+	return quat.GetMatrix();
 }
 
 ibMtx4 ibMtx4::Stabelize( const ibMtx4& mtx )

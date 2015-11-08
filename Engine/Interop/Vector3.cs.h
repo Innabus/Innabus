@@ -80,7 +80,7 @@ namespace Innabus {
 			static Vector3^ operator*= ( Vector3^ lhs, const f32 scale ) { return lhs->Mul(scale); }
 			static f32 operator*= ( Vector3^ lhs, Vector3^ rhs ) { return lhs->Dot(rhs); }
 
-			static bool operator==( Vector3^ lhs, Vector3^ rhs ) { return lhs->m_vector == rhs->m_vector; }
+			static bool operator==( Vector3^ lhs, Vector3^ rhs ) { return *lhs->m_vector == *rhs->m_vector; }
 			static bool operator!=( Vector3^ lhs, Vector3^ rhs ) { return !(lhs == rhs); }
 
 			ibVec3* m_vector;

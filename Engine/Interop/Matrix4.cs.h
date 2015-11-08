@@ -1,12 +1,17 @@
 #pragma once
 
 using namespace System;
+using namespace System::Runtime::InteropServices;
 
 #include "ibMtx4.h"
 
 namespace Innabus {
 	namespace Math
 	{
+		ref class Vector3;
+		ref class Vector4;
+		ref class Quaternion;
+
 		public ref class Matrix4
 		{
 		public:
@@ -59,6 +64,18 @@ namespace Innabus {
 			static Matrix4^ Mul( Matrix4^ lhs, Matrix4^ rhs ) { return (gcnew Matrix4(lhs))->Mul(rhs); }
 			static Matrix4^ Transpose( Matrix4^ mtx ) { return (gcnew Matrix4(mtx))->Transpose(); }
 			static Matrix4^ Invert( Matrix4^ mtx ) { return (gcnew Matrix4(mtx))->Invert(); }
+
+			static Matrix4^ RotateX( f32 angle ) { return gcnew Matrix4(ibMtx4::RotateX(angle)); }
+			static Matrix4^ RotateY( f32 angle ) { return gcnew Matrix4(ibMtx4::RotateY(angle)); }
+			static Matrix4^ RotateZ( f32 angle ) { return gcnew Matrix4(ibMtx4::RotateZ(angle)); }
+
+			static Matrix4^ RotateEuler( f32 yaw, f32 pitch, f32 roll ) { return gcnew Matrix4(ibMtx4::RotateEuler(yaw, pitch, roll)); }
+			static Matrix4^ RotateAxisAngle( Vector3^ axis, f32 angle );
+			static Matrix4^ RotateAxisAngle( Vector4^ axis, f32 angle );
+			static Matrix4^ RotateQuaternion( Quaternion^ quat );
+
+			static void GetAxisAngle( Matrix4^ mtx, [Out] Vector3^% axis, [Out] f32% angle );
+			static void GetAxisAngle( Matrix4^ mtx, [Out] Vector4^% axis, [Out] f32% angle );
 
 			static Matrix4^ Stabelize( Matrix4^ mtx ) { return (gcnew Matrix4(mtx))->Stabelize(); }
 
