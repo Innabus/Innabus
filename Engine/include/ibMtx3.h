@@ -76,4 +76,7 @@ inline ibMtx3& operator-= ( ibMtx3& lhs, const ibMtx3& rhs ) { return lhs.Sub(rh
 inline ibMtx3& operator*= ( ibMtx3& lhs, const f32 scale ) { return lhs.Scale(scale); }
 inline ibMtx3& operator*= ( ibMtx3& lhs, const ibMtx3& rhs ) { return lhs.Mul(rhs); }
 
+bool IB_EXPORT operator== ( const ibMtx3& lhs, const ibMtx3& rhs );
+inline bool operator!= ( const ibMtx3& lhs, const ibMtx3& rhs ) { return !(lhs == rhs); }
+
 #endif // IB_MTX3_H

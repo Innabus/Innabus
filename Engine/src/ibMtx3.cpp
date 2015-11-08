@@ -250,3 +250,12 @@ ibMtx3 ibMtx3::Stabelize( const ibMtx3& mtx )
 	return ibMtx3(mtx).Stabelize();
 }
 
+bool IB_EXPORT operator== ( const ibMtx3& lhs, const ibMtx3& rhs )
+{
+	for (u32 n = 0; n < 9; ++n)
+	{
+		if (!fcmp(lhs.data.f[n], rhs.data.f[n]))
+			return false;
+	}
+	return true;
+}

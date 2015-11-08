@@ -64,6 +64,9 @@ namespace Innabus {
 			static Matrix2^ operator-= ( Matrix2^ lhs, Matrix2^ rhs ) { return lhs->Sub(rhs); }
 			static Matrix2^ operator*= ( Matrix2^ lhs, f32 scale ) { return lhs->Scale(scale); }
 			static Matrix2^ operator*= ( Matrix2^ lhs, Matrix2^ rhs ) { return lhs->Mul(rhs); }
+
+			static bool operator== ( Matrix2^ lhs, Matrix2^ rhs ) { return *lhs->m_matrix == *rhs->m_matrix; }
+			static bool operator!= ( Matrix2^ lhs, Matrix2^ rhs ) { return !(lhs == rhs); }
 		};
 	}
 }

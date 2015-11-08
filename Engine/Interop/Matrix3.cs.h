@@ -81,6 +81,9 @@ namespace Innabus {
 			static Matrix3^ operator-= ( Matrix3^ lhs, Matrix3^ rhs ) { return lhs->Sub(rhs); }
 			static Matrix3^ operator*= ( Matrix3^ lhs, const f32 scale ) { return lhs->Scale(scale); }
 			static Matrix3^ operator*= ( Matrix3^ lhs, Matrix3^ rhs ) { return lhs->Mul(rhs); }
+
+			static bool operator== ( Matrix3^ lhs, Matrix3^ rhs ) { return *lhs->m_matrix == *rhs->m_matrix; }
+			static bool operator!= ( Matrix3^ lhs, Matrix3^ rhs ) { return !(lhs == rhs); }
 		};
 	}
 }

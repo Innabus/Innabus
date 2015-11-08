@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+#include "ibMath.h"
+
 const ibMtx2 ibMtx2::ZERO     = ibMtx2(  0,  0,  0,  0 );
 const ibMtx2 ibMtx2::ONE      = ibMtx2(  1,  1,  1,  1 );
 const ibMtx2 ibMtx2::FLIP_X   = ibMtx2( -1,  0,  0,  1 );
@@ -137,4 +139,14 @@ ibMtx2 ibMtx2::Rotation( f32 angle )
 ibMtx2 ibMtx2::Stabelize( const ibMtx2& mtx )
 {
 	return ibMtx2(mtx).Stabelize();
+}
+
+bool IB_EXPORT operator== ( const ibMtx2& lhs, const ibMtx2& rhs )
+{
+	for (u32 n = 0; n < 4; ++n)
+	{
+		if (!fcmp(lhs.data.f[n], rhs.data.f[n]))
+			return false;
+	}
+	return true;
 }
