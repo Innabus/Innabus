@@ -16,6 +16,8 @@ namespace MathRegression
             Mtx2Regression m2test = new Mtx2Regression();
             Mtx3Regression m3test = new Mtx3Regression();
             Mtx4Regression m4test = new Mtx4Regression();
+            QuatRegression quattest = new QuatRegression();
+
             v2test.RunTests();
             Console.WriteLine("--");
             v3test.RunTests();
@@ -27,6 +29,8 @@ namespace MathRegression
             m3test.RunTests();
             Console.WriteLine("--");
             m4test.RunTests();
+            Console.WriteLine("--");
+            quattest.RunTests();
         }
     }
 }

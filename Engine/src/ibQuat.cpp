@@ -1,5 +1,6 @@
 #include "ibQuat.h"
 #include "ibVec3.h"
+#include "ibVec4.h"
 
 #include "ibMath.h"
 
@@ -14,7 +15,7 @@ w(_w), x(_x), y(_y), z(_z)
 {
 }
 
-ibQuat::ibQuat( const float pitch, const float yaw, const float roll )
+ibQuat::ibQuat( const float yaw, const float pitch, const float roll )
 {
 	const float PIOVER360 = ibMath::Pi / 360.f;
 	const float p = pitch * PIOVER360;
@@ -81,17 +82,44 @@ ibQuat& ibQuat::Normalize()
 	return *this;
 }
 
+ibQuat& ibQuat::Add( const ibQuat& rhs )
+{
+	w += rhs.w;
+	x += rhs.x;
+	y += rhs.y;
+	z += rhs.z;
+	return *this;
+}
+
+ibQuat& ibQuat::Sub( const ibQuat& rhs )
+{
+	w -= rhs.w;
+	x -= rhs.x;
+	y -= rhs.y;
+	z -= rhs.z;
+	return *this;
+}
+
 ibQuat& ibQuat::Mul( const ibQuat& rhs )
 {
 	float tmps[4];
 	tmps[0] = w * rhs.w - x * rhs.x - y * rhs.y - z * rhs.z;
-	tmps[1] = w * rhs.x + x * rhs.w + y * rhs.z - z * rhs.y;
-	tmps[2] = w * rhs.y - x * rhs.z + y * rhs.w + z * rhs.x;
-	tmps[3] = w * rhs.z + x * rhs.y - y * rhs.x + z * rhs.w;
+	tmps[1] = w * rhs.x + x * rhs.w - y * rhs.z + z * rhs.y;
+	tmps[2] = w * rhs.y + x * rhs.z + y * rhs.w - z * rhs.x;
+	tmps[3] = w * rhs.z - x * rhs.y + y * rhs.x + z * rhs.w;
 	w = tmps[0];
 	x = tmps[1];
 	y = tmps[2];
 	z = tmps[3];
+	return *this;
+}
+
+ibQuat& ibQuat::Mul( const f32 scalar )
+{
+	w *= scalar;
+	x *= scalar;
+	y *= scalar;
+	z *= scalar;
 	return *this;
 }
 
@@ -105,15 +133,9 @@ ibQuat& ibQuat::Invert()
 	return *this;
 }
 
-ibQuat ibQuat::GetConjugate() const
+ibQuat ibQuat::Conjugate() const
 {
 	return ibQuat( w, -x, -y, -z );
-}
-
-ibQuat ibQuat::GetInverse() const
-{
-	float length = 1.f / (x*x + y*y + z*z + w*w);
-	return ibQuat( w * length, x * -length, y * -length, z * -length );
 }
 
 ibMtx4 ibQuat::GetMatrix() const
@@ -157,25 +179,32 @@ void ibQuat::ToAxisAngle( ibVec3* axis, float* angle ) const
 	}
 }
 
-ibVec3 ibQuat::RotatePt( ibVec3 p )
+ibVec3 ibQuat::RotatePt( const ibVec3& p ) const
 {
-	// qp(q^-1)
+	ibQuat res = Conjugate();
+	(res *= ibQuat(0, p.x, p.y, p.z)) *= *this;
+	ibVec3 v(res.x, res.y, res.z);
+	return v;
+}
 
-	// First calculate qp = [s, A][0, B]
-	// == [-A.B, sB + A x B]
-	f32 AdotB = (x * p.x) + (y * p.y) + (z * p.z);
+ibVec4 ibQuat::RotatePt( const ibVec4& p ) const
+{
+	ibQuat res = Conjugate();
+	(res *= ibQuat(0, p.x, p.y, p.z)) *= *this;
+	ibVec4 v(res.x, res.y, res.z, p.w);
+	return v;
+}
 
-	// Find sB + A x B
-	ibVec3 sBplusAcrossB( 
-		(y * p.z) - (z * p.y) + (w * p.x),
-		(z * p.x) - (x * p.z) + (w * p.y),
-		(x * p.y) - (y * p.x) + (w * p.z)
-	);
+void ibQuat::TransformPoints( ibVec3* points, u32 count ) const
+{
+	for (u32 n = 0; n < count; ++n)
+		RotatePt(points[n]);
+}
 
-	ibQuat qp( AdotB, sBplusAcrossB.x, sBplusAcrossB.y, sBplusAcrossB.z );
-	qp.Mul( GetConjugate() );
-
-	return ibVec3( qp.x, qp.y, qp.z );
+void ibQuat::TransformPoints( ibVec4* points, u32 count ) const
+{
+	for (u32 n = 0; n < count; ++n)
+		RotatePt(points[n]);
 }
 
 /* static */
@@ -220,6 +249,7 @@ ibQuat ibQuat::Slerp( const ibQuat& start, const ibQuat& end, float alpha )
 	return result.Normalize();
 }
 
+/*
 ibQuat ibQuat::operator + ( const ibQuat & rhs ) const
 {
 	return ibQuat( w + rhs.w, x + rhs.x, y + rhs.y, z + rhs.z );
@@ -311,3 +341,4 @@ ibQuat& ibQuat::operator /= ( const f32 & rhs )
 	z /= rhs;
 	return *this;
 }
+*/

@@ -44,7 +44,6 @@ namespace MathRegression
             PrintResults(a, b);
         }
 
-
         private string Passed(bool b)
         {
             string s = "Passed";
