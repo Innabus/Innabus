@@ -17,19 +17,22 @@ w(_w), x(_x), y(_y), z(_z)
 
 ibQuat::ibQuat( const float yaw, const float pitch, const float roll )
 {
-	const float PIOVER360 = ibMath::Pi / 360.f;
-	const float p = pitch * PIOVER360;
-	const float _y = yaw * PIOVER360;
-	const float r = roll * PIOVER360;
+	//const float PIOVER360 = ibMath::Pi / 360.f;
+	//const float p = pitch * PIOVER360;
+	//const float _y = yaw * PIOVER360;
+	//const float r = roll * PIOVER360;
 
-	float sinp = sin(p), cosp = cos(p);
-	float siny = sin(_y), cosy = cos(_y);
-	float sinr = sin(r), cosr = cos(r);
-
+	//float sinp = sin(p), cosp = cos(p);
+	//float siny = sin(_y), cosy = cos(_y);
+	//float sinr = sin(r), cosr = cos(r);
+	float sinp = sin(pitch /2), cosp = cos(pitch / 2);
+	float siny = sin(yaw / 2), cosy = cos(yaw / 2);
+	float sinr = sin(roll / 2), cosr = cos(roll / 2);
+	
 	w = cosr * cosp * cosy + sinr * sinp * siny;
-	x = sinr * cosp * cosy - cosr * sinp * siny;
-	y = cosr * sinp * cosy + sinr * cosp * siny;
-	z = cosr * cosp * siny - sinr * sinp * cosy;
+	x = cosr * sinp * cosy + sinr * cosp * siny;
+	y = cosr * cosp * siny - sinr * sinp * cosy;
+	z = sinr * cosp * cosy - cosr * sinp * siny;
 
 	Normalize();
 }

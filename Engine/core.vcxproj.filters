@@ -102,6 +102,9 @@
     <Filter Include="Math">
       <UniqueIdentifier>{2a588a90-7198-4539-9ece-a3d53b996de0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File system">
+      <UniqueIdentifier>{202da745-f8b0-4743-bfa3-20bfceafa5f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ibDataTypes.h">
