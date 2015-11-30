@@ -8,7 +8,7 @@ void* ibMemcpy(void* dst, const void* src, u32 size)
 }
 
 inline
-void* ibMemset(void* dst, u32 size, u32 value)
+void* ibMemset(void* dst, u32 value, u32 size)
 {
 	memset(dst, value, size);
 	return dst;

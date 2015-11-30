@@ -55,9 +55,9 @@ void ibCreateHeaps()
 		heapOffset += s_Heaps[n].Size;
 	}
 
-	ibHeap* pHeaps = pBootstrap->AllocHigh<ibHeap>(sectionSize);
+	ibHeap* pHeaps = pBootstrap->AllocHigh<ibHeap>(sectionSize, "Heaps");
 	ibMemcpy(pHeaps, pBootstrap, sectionSize);
-	ibMemset(pBootstrap, sectionSize, 0);
+	ibMemset(pBootstrap, 0, sectionSize);
 	
 	for (u32 n = 0; n < kHeap_Count; ++n)
 	{
@@ -66,4 +66,16 @@ void ibCreateHeaps()
 	}
 
 	// setupHeap deletes without calling destructors or affecting its memory
+}
+
+void IB_EXPORT ibCheckHeaps()
+{
+	for (u32 n = 0; n < kHeap_Count; ++n)
+		s_Heaps[n].Heap->Check();
+}
+
+void IB_EXPORT ibDumpHeaps()
+{
+	for (u32 n = 0; n < kHeap_Count; ++n)
+		s_Heaps[n].Heap->Dump();
 }

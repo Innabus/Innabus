@@ -16,6 +16,10 @@ public:
 	ibAllocationData* m_prev; // Previous block
 	ibAllocationData* m_next; // Next block
 
+#ifndef NDEBUG
+	const char* m_pDebugString; // This MUST point to static data
+#endif // NDEBUG
+
 #ifdef IB_ALLOC_GUARDS
 	char padding[64 - (2 * sizeof(u32)) - (sizeof(void*) * 3) - sizeof(u32[8])];
 	u32* m_footerGuard;

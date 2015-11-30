@@ -75,7 +75,7 @@ void ibThreadBase::SetThreadName( char* name )
 {
 #ifndef NDEBUG
 	u32 nameLen = strlen(name);
-	char* dst = new char[nameLen + 1];
+	char* dst = new (g_engineHeap, "Thread name") char[nameLen + 1];
 	strcpy(dst, name);
 	m_pName = dst;
 #endif
@@ -97,6 +97,7 @@ void ibThreadBase::SetThreadName( char* name )
 
 DWORD CALLBACK ibThreadBase::ThreadProc( void* pParam )
 {
+	SetLastError(0); // Because windows is fucking retarded?
 	ibThreadBase* pBase = (ibThreadBase*)pParam;
 	pBase->Run();
 	return pBase->m_result;

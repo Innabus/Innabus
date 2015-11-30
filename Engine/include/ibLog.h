@@ -9,10 +9,12 @@
 
 void ibLog( const char* fmt, ... );
 void ibLogL( const char* fmt, va_list args );
+void ibLogH( const char* fmt, ibHeap* pHeap, ... );
 
 #else
 #define ibLog( ... )
 #define ibLogL( ... )
+#define ibLogH( ... )
 #endif // DN_ENABLE_LOG
 
 #endif // DN_LOG_H

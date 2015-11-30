@@ -1,12 +1,10 @@
 #ifndef IB_MCP_H
 #define IB_MCP_H
 
-#include <queue>
-#include <list>
-
 #include "ibReferenceExternal.h"
 #include "ibCriticalSection.h"
 #include "ibSemaphore.h"
+#include "ibStd.h"
 
 class ibJob;
 class ibGameThread;
@@ -64,11 +62,11 @@ private:
 	// Jobs
 	ibCriticalSection m_jobQueueCS;
 	ibSemaphore m_jobSemaphore;
-	std::queue<ibJob*> m_jobQueue;
+	ibQueue<ibJob*> m_jobQueue;
 
 	// Reference tracking
 	ibCriticalSection m_referenceLock;
-	std::list<ibReferenceExternal> m_references;
+	ibList<ibReferenceExternal> m_references;
 
 	// External telemetry
 #ifdef IB_ENABLE_TELEMETRY

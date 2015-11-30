@@ -3,9 +3,11 @@
 #include "ibVec4.h"
 #include "ibQuat.h"
 
-#include <memory.h>
+//#include <memory.h>
 
 #include <emmintrin.h>
+
+#include "ibMemory.h"
 
 namespace
 {
@@ -90,7 +92,7 @@ ibMtx4& ibMtx4::Mul( const ibMtx4& rhs )
 	f32 f[4];
 	for ( unsigned row = 0; row < 4; ++row )
 	{
-		memcpy( f, data.a[row], sizeof(f32) * 4 );
+		ibMemcpy( f, data.a[row], sizeof(f32) * 4 );
 		for ( unsigned n = 0; n < 4; ++n )
 			data.a[row][n] = f[0] * rhs.data.a[0][n] + f[1] * rhs.data.a[1][n] + f[2] * rhs.data.a[2][n] + f[3] * rhs.data.a[3][n];
 	}

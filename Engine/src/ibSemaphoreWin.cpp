@@ -54,7 +54,7 @@ void ibSemaphore::Lock()
 {
 	DWORD result = WAIT_FAILED;
 	while ( result != WAIT_OBJECT_0 )
-		result = WaitForSingleObject( m_semaphore, INFINITE );
+		result = WaitForSingleObjectEx( m_semaphore, INFINITE, TRUE );
 }
 
 void ibSemaphore::Release( int count /*=1*/ )

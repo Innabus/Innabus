@@ -104,6 +104,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>pathcch.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,6 +122,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>pathcch.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -143,6 +145,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>pathcch.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -164,6 +167,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>pathcch.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -172,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="src\ibAtomicWin.cpp" />
     <ClCompile Include="src\ibCriticalSectionWin.cpp" />
+    <ClCompile Include="src\ibFile.cpp" />
+    <ClCompile Include="src\ibFileRef.cpp" />
+    <ClCompile Include="src\ibFileSystemWin.cpp" />
     <ClCompile Include="src\ibHash.cpp" />
     <ClCompile Include="src\ibHeap.cpp" />
     <ClCompile Include="src\ibHeapDefines.cpp" />
@@ -182,9 +189,10 @@
     <ClCompile Include="src\ibMtx2.cpp" />
     <ClCompile Include="src\ibMtx3.cpp" />
     <ClCompile Include="src\ibMutexWin.cpp" />
-    <ClCompile Include="src\ibNew.cpp" />
+    <ClCompile Include="src\ibOpenFileJobWin.cpp" />
     <ClCompile Include="src\ibOSWin.cpp" />
     <ClCompile Include="src\ibQuat.cpp" />
+    <ClCompile Include="src\ibReadFileJobWin.cpp" />
     <ClCompile Include="src\ibSemaphoreWin.cpp" />
     <ClCompile Include="src\ibSystem.cpp" />
     <ClCompile Include="src\ibSystemWin.cpp" />
@@ -193,6 +201,7 @@
     <ClCompile Include="src\ibVec2.cpp" />
     <ClCompile Include="src\ibVec3.cpp" />
     <ClCompile Include="src\ibVec4.cpp" />
+    <ClCompile Include="src\ibWriteFileJobWin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\sqlite3\sqlite3.h" />
@@ -201,6 +210,9 @@
     <ClInclude Include="include\ibCriticalSection.h" />
     <ClInclude Include="include\ibDataTypes.h" />
     <ClInclude Include="include\ibEngineDefines.h" />
+    <ClInclude Include="include\ibFile.h" />
+    <ClInclude Include="include\ibFileRef.h" />
+    <ClInclude Include="include\ibFileSystem.h" />
     <ClInclude Include="include\ibForcedInclude.h" />
     <ClInclude Include="include\ibGameThread.h" />
     <ClInclude Include="include\ibHash.h" />
@@ -218,20 +230,26 @@
     <ClInclude Include="include\ibMtx3.h" />
     <ClInclude Include="include\ibMutex.h" />
     <ClInclude Include="include\ibNew.h" />
+    <ClInclude Include="include\ibOpenFileJob.h" />
     <ClInclude Include="include\ibOS.h" />
     <ClInclude Include="include\ibQuat.h" />
+    <ClInclude Include="include\ibReadFileJob.h" />
     <ClInclude Include="include\ibReference.h" />
     <ClInclude Include="include\ibReferenceExternal.h" />
     <ClInclude Include="include\ibSemaphore.h" />
+    <ClInclude Include="include\ibStd.h" />
+    <ClInclude Include="include\ibStdAllocator.h" />
     <ClInclude Include="include\ibSystem.h" />
     <ClInclude Include="include\ibThreadBase.h" />
     <ClInclude Include="include\ibUtil.h" />
     <ClInclude Include="include\ibVec2.h" />
     <ClInclude Include="include\ibVec3.h" />
     <ClInclude Include="include\ibVec4.h" />
+    <ClInclude Include="include\ibWriteFileJob.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\ibMemory.inl" />
+    <None Include="include\ibNew.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

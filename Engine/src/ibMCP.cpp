@@ -6,6 +6,7 @@
 #include "ibSemaphore.h"
 #include "ibThreadBase.h"
 #include "ibJobThread.h"
+#include "ibStd.h"
 
 // #include "ibTelemetryManager.h"
 
@@ -21,7 +22,7 @@ namespace
 void ibMCP::Startup(u32 nMaxAuxThreads)
 {
 	ibVerifyMsg(s_pMCPInst == 0, "Error: Startup called more than once.");
-	s_pMCPInst = new (g_engineHeap) ibMCP;
+	s_pMCPInst = new (g_engineHeap->AllocHigh(sizeof(ibMCP), "MCP")) ibMCP;
 	s_pMCPInst->Init(nMaxAuxThreads);
 }
 
@@ -38,7 +39,7 @@ void ibMCP::ShutdownWait()
 	if ( s_pMCPInst->m_pAuxThreads )
 	{
 		for ( u32 i = 0; i < s_pMCPInst->m_maxAuxThreads; ++i )
-			s_pMCPInst->QueueJob( new (g_engineHeap) ibKillJob );
+			s_pMCPInst->QueueJob( new (g_engineHeap, "Kill job") ibKillJob );
 
 		for ( u32 i = 0; i < s_pMCPInst->m_maxAuxThreads; ++i )
 		{
@@ -48,6 +49,7 @@ void ibMCP::ShutdownWait()
 		delete [] s_pMCPInst->m_pAuxThreads;
 		s_pMCPInst->m_pAuxThreads = 0;
 	}
+	delete s_pMCPInst->m_pGameThread;
 }
 
 void ibMCP::Destroy()
@@ -95,18 +97,19 @@ void ibMCP::Init(u32 threadCount)
 	m_pRenderThread = 0;
 	m_pAuxThreads = 0;
 
-	m_pAuxThreads = new (g_engineHeap) ibThreadBase*[m_maxAuxThreads];
+	m_pAuxThreads = g_engineHeap->AllocHigh<ibThreadBase*>(sizeof(ibThreadBase*) * m_maxAuxThreads, "Aux thread ptr array");
 	for (u32 n = 0; n < m_maxAuxThreads; ++n)
 	{
 		// Create aux threads suspended and immediately resume so that ibJobThread's ctor can set the sema
 		// pointer without a race for thread entry
-		m_pAuxThreads[n] = new (g_engineHeap) ibJobThread(&m_jobSemaphore, ibThreadBase::kThreadFlag_Suspended);
+		void* place = g_engineHeap->AllocHigh(sizeof(ibJobThread), "Job thread object");
+		m_pAuxThreads[n] = new (place) ibJobThread(&m_jobSemaphore, ibThreadBase::kThreadFlag_Suspended);
 		m_pAuxThreads[n]->SetThreadName("Job thread");
 		m_pAuxThreads[n]->Resume();
 	}
 
-	m_pGameThread = new (g_engineHeap) ibGameThread;
-	//m_pRenderThread = new (g_engineHeap) ibRenderThread;
+	m_pGameThread = new (g_engineHeap->AllocHigh(sizeof(ibGameThread), "Game thread object")) ibGameThread;
+	//m_pRenderThread = new (g_engineHeap, "Render thread object") ibRenderThread;
 
 	//m_pGameThread->Advance();
 }
@@ -164,7 +167,7 @@ ibReferenceExternal* ibMCP::CreateRef(void* pObject)
 void ibMCP::RemoveRef(ibReferenceExternal* pRef)
 {
 	ibAssertMsg(pRef->GetCount() == 0, "Removing a reference with an invalid ref count");
-	std::list<ibReferenceExternal>::iterator b, e = m_references.end();
+	ibList<ibReferenceExternal>::iterator b, e = m_references.end();
 	for (b = m_references.begin(); b != e; ++b)
 	{
 		if (&*b == pRef)
@@ -192,7 +195,7 @@ u32 ibMCP::GetReferenceCount()
 
 ibReferenceExternal* ibMCP::GetReferenceByIndex(u32 index)
 {
-	std::list<ibReferenceExternal>::iterator i = m_references.begin();
+	ibList<ibReferenceExternal>::iterator i = m_references.begin();
 	std::advance(i, index);
 	return &*i;
 }

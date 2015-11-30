@@ -17,6 +17,7 @@ void ibJobThread::Run()
 
 		switch (result)
 		{
+		//case Result::kKillThread:
 		case Result::kFinished:
 			delete pJob;
 			break;

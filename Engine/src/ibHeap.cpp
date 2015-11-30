@@ -35,7 +35,7 @@ m_pDebugName(0),
 #endif
 m_allocHeap(true)
 {
-	m_region = new char[size];
+	m_region = new ("Sub heap") char[size];
 	ibAllocationData::CreateBlock(m_region, m_size);
 }
 
@@ -82,7 +82,7 @@ inline u32 ibHeapHelper_BreakBlock(ibAllocationData* block, u32 minBlockSize, u3
 	return totalAlloc;
 }
 
-void* ibHeap::Alloc(u32 size)
+void* ibHeap::Alloc(u32 size, const char* pDebugString)
 {
 	u32 totalAlloc = ibMax(ibAllocationData::CalculateRequired(size), IB_MIN_ALLOC);
 	totalAlloc = (totalAlloc + IB_HEAP_BLOCK_ALIGN) & ~IB_HEAP_BLOCK_ALIGN;
@@ -101,6 +101,9 @@ void* ibHeap::Alloc(u32 size)
 
 	block->m_size = ibHeapHelper_BreakBlock(block, IB_MIN_ALLOC, totalAlloc);
 	block->m_requested = size;
+#ifndef NDEBUG
+	block->m_pDebugString = pDebugString;
+#endif
 
 	// Done fucking with the chain here
 	m_lock.Release();
@@ -109,13 +112,13 @@ void* ibHeap::Alloc(u32 size)
 
 	char* baseData = ((char*)block) + sizeof(ibAllocationData);
 #ifdef IB_MEMORY_FILL
-	ibMemset(baseData, size, IB_ALLOC_FILL);
+	ibMemset(baseData, IB_ALLOC_FILL, size);
 #endif
 
 	return baseData;
 }
 
-void* ibHeap::AllocHigh(u32 size)
+void* ibHeap::AllocHigh(u32 size, const char* pDebugString)
 {
 	u32 totalAlloc = ibMax(ibAllocationData::CalculateRequired(size), IB_MIN_ALLOC);
 	totalAlloc = (totalAlloc + IB_HEAP_BLOCK_ALIGN) & ~IB_HEAP_BLOCK_ALIGN;
@@ -137,6 +140,9 @@ void* ibHeap::AllocHigh(u32 size)
 	block->m_size = ibHeapHelper_BreakBlock(block, IB_MIN_ALLOC, block->m_size - totalAlloc);
 	block = block->m_next;
 	block->m_requested = size;
+#ifndef NDEBUG
+	block->m_pDebugString = pDebugString;
+#endif
 
 	m_lock.Release();
 
@@ -144,7 +150,7 @@ void* ibHeap::AllocHigh(u32 size)
 
 	char* baseData = ((char*)block) + sizeof(ibAllocationData);
 #ifdef IB_MEMORY_FILL
-	ibMemset(baseData, size, IB_ALLOC_FILL);
+	ibMemset(baseData, IB_ALLOC_FILL, size);
 #endif
 
 	return baseData;
@@ -179,7 +185,8 @@ void ibHeap::Free(void* pFree)
 		block->m_prev->m_size += block->m_size;
 		block->m_prev->m_next = block->m_next;
 		block = block->m_prev;
-		block->m_next->m_prev = block;
+		if (block->m_next)
+			block->m_next->m_prev = block;
 	}
 
 	m_lock.Release();
@@ -187,7 +194,7 @@ void ibHeap::Free(void* pFree)
 #ifdef IB_MEMORY_FILL
 	u32 fillSize = block->m_size - sizeof(ibAllocationData);
 	char* fillStart = ((char*)block) + sizeof(ibAllocationData);
-	ibMemset(fillStart, fillSize, IB_FREE_FILL);
+	ibMemset(fillStart, IB_FREE_FILL, fillSize);
 #endif
 }
 
@@ -208,18 +215,42 @@ void ibHeap::Check()
 
 void ibHeap::Dump()
 {
-	u32 index = 0;
+	u32 index = 1;
 	ibAllocationData* block = (ibAllocationData*)m_region;
 	m_lock.Lock();
+
+	ibHeap* logHeap = (g_miscHeap == this) ? g_engineHeap : g_miscHeap;
+
+#ifndef NDEBUG
+	u32 freeBlocks = 0;
+	u32 freeBytes = 0;
+	GetFreeSpaceAndBlocks(&freeBytes, &freeBlocks);
+	ibLogH("////////////////////////////////////\n", logHeap);
+	ibLogH("//%s, %d blocks\n", logHeap, m_pDebugName, GetBlockCount());
+	ibLogH("//Base: 0x%p, Size: %d, Free: %d (b) in %d blocks\n", 
+		logHeap,
+		m_region,
+		m_size,
+		freeBytes,
+		freeBlocks);
+	ibLogH("////////////////////////////////////\n", logHeap);
+#endif
+
 	while (block)
 	{
-		ibLog("%d: 0x%p -- %d (bytes) %s\n",
+		ibLogH("%d: 0x%p -- %d (bytes); %s\n",
+			logHeap,
 			index++,
 			block,
 			block->m_size,
+#ifndef NDEBUG
+			block->m_requested ? (block->m_pDebugString ? block->m_pDebugString : "") : "(Free)");
+#else
 			block->m_requested ? "" : "(Free)");
+#endif // !NDEBUG
 		block = block->m_next;
 	}
+	ibLogH("--------------------------------------------------------------------------------\n", logHeap);
 	m_lock.Release();
 }
 
@@ -236,4 +267,27 @@ u32 ibHeap::GetBlockCount()
 	m_lock.Release();
 
 	return count;
+}
+
+void ibHeap::GetFreeSpaceAndBlocks(u32* pSpace, u32* pBlocks)
+{
+	if (pSpace)
+		*pSpace = 0;
+	if (pBlocks)
+		*pBlocks = 0;
+
+	m_lock.Lock();
+	ibAllocationData* block = (ibAllocationData*)m_region;
+	while (block)
+	{
+		if (block->m_requested == 0)
+		{
+			if (pSpace)
+				*pSpace += block->m_size;
+			if (pBlocks)
+				*pBlocks += 1;
+		}
+		block = block->m_next;
+	}
+	m_lock.Release();
 }

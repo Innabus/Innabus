@@ -21,7 +21,7 @@ struct ibHeapDesc
 	u32 Size;
 	ibHeap* Heap;
 };
-extern ibHeapDesc s_Heaps[kHeap_Count];
+extern ibHeapDesc IB_EXPORT s_Heaps[kHeap_Count];
 
 inline ibHeap* ibGetHeap(ibHeapType type) {	return s_Heaps[type].Heap; }
 
@@ -34,5 +34,8 @@ inline ibHeap* ibGetHeap(ibHeapType type) {	return s_Heaps[type].Heap; }
 #endif
 
 void ibCreateHeaps();
+
+void IB_EXPORT ibCheckHeaps();
+void IB_EXPORT ibDumpHeaps();
 
 #endif // IB_HEAP_DEFINES_H

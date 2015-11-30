@@ -21,6 +21,9 @@ namespace ibOS
 
 	typedef SOCKET Socket;
 
+	typedef HANDLE File;
+	typedef FILETIME FileTime;
+
 	u32 GetCoreCount();
 	u32 GetProcessId();
 }

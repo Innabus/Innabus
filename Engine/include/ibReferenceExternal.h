@@ -12,7 +12,7 @@ public:
 
 	u32 AddRef() { return ++m_count; }
 	u32 Release() { return --m_count; }
-	u32 GetCount() { return m_count; }
+	u32 GetCount() const { return m_count; }
 
 	void* Get() { return m_object; }
 

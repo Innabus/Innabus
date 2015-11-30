@@ -34,9 +34,6 @@
     <ClCompile Include="src\ibThreadBaseWin.cpp">
       <Filter>Threading\Win</Filter>
     </ClCompile>
-    <ClCompile Include="src\ibNew.cpp">
-      <Filter>Memory</Filter>
-    </ClCompile>
     <ClCompile Include="src\ibJobThread.cpp">
       <Filter>Jobs</Filter>
     </ClCompile>
@@ -73,6 +70,24 @@
     <ClCompile Include="src\ibVec4.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="src\ibFileRef.cpp">
+      <Filter>File system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibFile.cpp">
+      <Filter>File system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibFileSystemWin.cpp">
+      <Filter>File system\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibOpenFileJobWin.cpp">
+      <Filter>File system\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibWriteFileJobWin.cpp">
+      <Filter>File system\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibReadFileJobWin.cpp">
+      <Filter>File system\Win</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
@@ -104,6 +119,12 @@
     </Filter>
     <Filter Include="File system">
       <UniqueIdentifier>{202da745-f8b0-4743-bfa3-20bfceafa5f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File system\Win">
+      <UniqueIdentifier>{5196d44c-d13a-4908-87eb-4cc7a6b2edef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STL">
+      <UniqueIdentifier>{dc10b35f-db98-478a-a203-fd50d1bbbd38}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +230,36 @@
     <ClInclude Include="include\ibVec4.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="include\ibFile.h">
+      <Filter>File system</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibOpenFileJob.h">
+      <Filter>File system</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibReadFileJob.h">
+      <Filter>File system</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibWriteFileJob.h">
+      <Filter>File system</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibFileRef.h">
+      <Filter>File system</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibFileSystem.h">
+      <Filter>File system</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibStdAllocator.h">
+      <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibStd.h">
+      <Filter>STL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\ibMemory.inl">
+      <Filter>Memory</Filter>
+    </None>
+    <None Include="include\ibNew.inl">
       <Filter>Memory</Filter>
     </None>
   </ItemGroup>

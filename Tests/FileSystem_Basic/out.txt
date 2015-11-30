@@ -1,0 +1,45 @@
+\\
+\\ Standard Paths
+\\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\data\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\audio\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\music\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\save\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\screenshots\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\script\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\script\
+C:\Projects\Innabus\Tests\Build\Win32\Debug\FileSystem_Basic\mod\
+\\
+\\ EnumDirectories
+\\
+.
+..
+audio
+data
+mod
+music
+save
+screenshots
+script
+\\
+\\ EnumFiles: kPath_Data
+\\
+data0.dat
+data1.dat
+data2.dat
+\\
+\\ EnumFiles: kPath_UserSave
+\\
+save0.sav
+save1.sav
+save2.sav
+user0.dat
+\\
+\\ Open Data File
+\\
+File opened
+\\
+\\ Open User File
+\\
+Writable: 1

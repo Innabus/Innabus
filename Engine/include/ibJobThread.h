@@ -10,7 +10,7 @@ class ibJobThread : public ibThreadBase
 {
 public:
 	ibJobThread(ibSemaphore* pSema, ibThreadBase::ThreadCreateFlags flags):ibThreadBase(flags), m_pSemaphore(pSema) {}
-	~ibJobThread();
+	~ibJobThread() {};
 
 protected:
 	virtual void Run();

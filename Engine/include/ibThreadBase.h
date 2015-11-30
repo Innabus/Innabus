@@ -15,7 +15,7 @@ public:
 	};
 
 	ibThreadBase( ThreadCreateFlags flags = kThreadFlag_None );
-	~ibThreadBase();
+	virtual ~ibThreadBase();
 
 	void Suspend();
 	void Resume();
@@ -25,7 +25,7 @@ public:
 
 	ibOS::ThreadID GetThreadID() { return m_threadID; }
 
-	void WaitForThread(unsigned waitTime = 5000 /*ms*/);
+	void WaitForThread(unsigned waitTime = 0xFFFFFFFF /*ms (infinite)*/);
 
 protected:
 	virtual void Run() = 0;

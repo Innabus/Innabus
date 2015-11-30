@@ -2,7 +2,7 @@
 #define IB_MEMORY_H
 
 void* ibMemcpy(void* dst, void* src);
-void* ibMemset(void* dst, u32 size, u32 value);
+void* ibMemset(void* dst, u32 value, u32 size);
 
 #include "ibMemory.inl"
 

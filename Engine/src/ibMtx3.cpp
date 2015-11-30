@@ -1,11 +1,12 @@
 #include "ibMtx3.h"
 
 #include <cmath>
-#include <memory.h>
 
 #include "ibVec3.h"
 #include "ibMtx4.h"
 #include "ibQuat.h"
+
+#include "ibMemory.h"
 
 const ibMtx3 ibMtx3::ZERO     = ibMtx3( 0,  0,  0,  0,  0,  0,  0,  0,  0 );
 const ibMtx3 ibMtx3::ONE      = ibMtx3( 1,  1,  1,  1,  1,  1,  1,  1,  1 );
@@ -71,7 +72,7 @@ ibMtx3& ibMtx3::Mul( const ibMtx3& rhs )
 	f32 f[3];
 	for (unsigned row = 0; row < 3; ++row)
 	{
-		memcpy(f, data.a[row], sizeof(f32) * 3);
+		ibMemcpy(f, data.a[row], sizeof(f32) * 3);
 		for (u32 n = 0; n < 3; ++n)
 		{
 			data.a[row][n] = f[0] * rhs.data.a[0][n] + f[1] * rhs.data.a[1][n] + f[2] * rhs.data.a[2][n];

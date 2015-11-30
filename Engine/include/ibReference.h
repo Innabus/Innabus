@@ -34,9 +34,10 @@ public:
 
 	virtual ~ibReference() { Release(); }
 
-	u32 GetRefCount() { return m_pRef->GetCount(); }
+	u32 GetRefCount() const { return m_pRef->GetCount(); }
 
 	T* Get() { return (T*)m_pRef->Get(); }
+	const T* Get() const { return (T*)m_pRef->Get(); }
 
 	T& operator*() { return *Get(); }
 	const T& operator*() const { return *Get(); }
