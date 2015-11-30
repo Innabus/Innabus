@@ -8,8 +8,6 @@
 
 #include "PathCch.h"
 
-#include <map>
-
 namespace
 {
 	ibFileSystem* s_pFileSystem;
