@@ -88,6 +88,9 @@
     <ClCompile Include="src\ibReadFileJobWin.cpp">
       <Filter>File system\Win</Filter>
     </ClCompile>
+    <ClCompile Include="src\ibEngineSettings.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">
@@ -253,6 +256,12 @@
     </ClInclude>
     <ClInclude Include="include\ibStd.h">
       <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderThread.h">
+      <Filter>Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibEngineSettings.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

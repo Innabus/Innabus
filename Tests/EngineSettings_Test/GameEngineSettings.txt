@@ -1,0 +1,10 @@
+
+DisplayMode = 0
+DisplayWidth = 640
+DisplayHeight = 480
+UseWindow = 1
+# comment line
+InvalidKey=foo
+	  LeadingSpace=bar
+Noval=
+Unterm=xxx

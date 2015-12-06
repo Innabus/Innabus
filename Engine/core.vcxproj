@@ -176,6 +176,7 @@
     </ClCompile>
     <ClCompile Include="src\ibAtomicWin.cpp" />
     <ClCompile Include="src\ibCriticalSectionWin.cpp" />
+    <ClCompile Include="src\ibEngineSettings.cpp" />
     <ClCompile Include="src\ibFile.cpp" />
     <ClCompile Include="src\ibFileRef.cpp" />
     <ClCompile Include="src\ibFileSystemWin.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="include\ibCriticalSection.h" />
     <ClInclude Include="include\ibDataTypes.h" />
     <ClInclude Include="include\ibEngineDefines.h" />
+    <ClInclude Include="include\ibEngineSettings.h" />
     <ClInclude Include="include\ibFile.h" />
     <ClInclude Include="include\ibFileRef.h" />
     <ClInclude Include="include\ibFileSystem.h" />
@@ -236,6 +238,7 @@
     <ClInclude Include="include\ibReadFileJob.h" />
     <ClInclude Include="include\ibReference.h" />
     <ClInclude Include="include\ibReferenceExternal.h" />
+    <ClInclude Include="include\ibRenderThread.h" />
     <ClInclude Include="include\ibSemaphore.h" />
     <ClInclude Include="include\ibStd.h" />
     <ClInclude Include="include\ibStdAllocator.h" />

@@ -109,7 +109,7 @@ void ibMCP::Init(u32 threadCount)
 	}
 
 	m_pGameThread = new (g_engineHeap->AllocHigh(sizeof(ibGameThread), "Game thread object")) ibGameThread;
-	//m_pRenderThread = new (g_engineHeap, "Render thread object") ibRenderThread;
+	//m_pRenderThread = new (g_engineHeap->AllocHigh(sizeof(ibRenderThread), "Render thread object")) ibRenderThread;
 
 	//m_pGameThread->Advance();
 }
