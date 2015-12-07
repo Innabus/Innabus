@@ -4,7 +4,7 @@
 
 #include "ibOS.h"
 
-class ibSemaphore
+class IB_CORE_EXPORT ibSemaphore
 {
 public:
 	ibSemaphore( int initialValue, int maxValue );

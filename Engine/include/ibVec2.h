@@ -6,7 +6,7 @@
 
 class ibMtx2;
 
-class IB_EXPORT ibVec2
+class IB_CORE_EXPORT ibVec2
 {
 public:
 	ibVec2() {}; // No default init!

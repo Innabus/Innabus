@@ -12,7 +12,7 @@ class ibRenderThread;
 class ibThreadBase;
 class ibTelemetryManager;
 
-class ibMCP
+class IB_CORE_EXPORT ibMCP
 {
 public:
 	static void Startup(u32 nMaxAuxThreads);
@@ -62,11 +62,17 @@ private:
 	// Jobs
 	ibCriticalSection m_jobQueueCS;
 	ibSemaphore m_jobSemaphore;
+#pragma warning(push)
+#pragma warning(disable : 4251)
 	ibQueue<ibJob*> m_jobQueue;
+#pragma warning(pop)
 
 	// Reference tracking
 	ibCriticalSection m_referenceLock;
+#pragma warning(push)
+#pragma warning(disable : 4251)
 	ibList<ibReferenceExternal> m_references;
+#pragma warning(pop)
 
 	// External telemetry
 #ifdef IB_ENABLE_TELEMETRY

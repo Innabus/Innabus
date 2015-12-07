@@ -4,6 +4,7 @@
 
 #include "ibThreadBase.h"
 #include "ibSemaphore.h"
+#include "ibSystem.h"
 
 class ibRenderThread : public ibThreadBase
 {

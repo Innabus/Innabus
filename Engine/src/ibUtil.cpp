@@ -4,17 +4,17 @@
 
 namespace innabus
 {
-	void DebugPrint( char* buffer )
+	IB_CORE_EXPORT void DebugPrint( char* buffer )
 	{
 		OutputDebugStringA( buffer );
 	}
 
-	void Break()
+	IB_CORE_EXPORT void Break()
 	{
 		DebugBreak();
 	}
 
-	void RaiseError( const char* condition, const char* filename, const unsigned line, const char* fmt, ... )
+	IB_CORE_EXPORT void RaiseError( const char* condition, const char* filename, const unsigned line, const char* fmt, ... )
 	{
 		ibLog( "[ASSERT] %s failed in %s at line %d:\n", condition, filename, line );
 		va_list args;

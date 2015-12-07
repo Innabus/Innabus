@@ -4,7 +4,7 @@
 
 #include "ibFileRef.h"
 
-class IB_EXPORT ibFileBase
+class IB_CORE_EXPORT ibFileBase
 {
 public:
 	ibFileBase(const ibFileRef& ref):m_fileRef(ref) {}

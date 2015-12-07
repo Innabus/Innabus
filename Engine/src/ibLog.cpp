@@ -8,7 +8,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-void ibLogL( const char* fmt, va_list args )
+IB_CORE_EXPORT void ibLogL( const char* fmt, va_list args )
 {
 	int len = _vscprintf( fmt, args ) + 1;
 	char* buffer = new ("ibLog buffer") char[len];
@@ -19,7 +19,7 @@ void ibLogL( const char* fmt, va_list args )
 	delete [] buffer;
 }
 
-void ibLogH( const char* fmt, ibHeap* pHeap, ... )
+IB_CORE_EXPORT void ibLogH( const char* fmt, ibHeap* pHeap, ... )
 {
 	va_list args;
 	va_start( args, pHeap );
@@ -34,7 +34,7 @@ void ibLogH( const char* fmt, ibHeap* pHeap, ... )
 	va_end( args );
 }
 
-void ibLog( const char* fmt, ... )
+IB_CORE_EXPORT void ibLog( const char* fmt, ... )
 {
 	va_list args;
 	va_start( args, fmt );

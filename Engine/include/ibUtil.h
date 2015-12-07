@@ -6,9 +6,9 @@
 
 namespace innabus
 {
-	void DebugPrint( char* buffer );
-	void RaiseError( const char* condition, const char* filename, const unsigned line, const char* fmt, ... );
-	void Break();
+	IB_CORE_EXPORT void DebugPrint( char* buffer );
+	IB_CORE_EXPORT void RaiseError( const char* condition, const char* filename, const unsigned line, const char* fmt, ... );
+	IB_CORE_EXPORT void Break();
 }
 
 #ifdef IB_ASSERT_ENABLE

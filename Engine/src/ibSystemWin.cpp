@@ -80,7 +80,8 @@ void ibSystem::Init()
 	}
 	SetLastError(0); // Don't care why it failed, only that it did
 
-	WindowCreate();
+	if (g_engineSettings.UseWindow)
+		WindowCreate();
 }
 
 int ibSystem::RunLoop()

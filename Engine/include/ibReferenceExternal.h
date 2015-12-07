@@ -4,7 +4,7 @@
 
 #include "ibUtil.h"
 
-class ibReferenceExternal
+class IB_CORE_EXPORT ibReferenceExternal
 {
 public:
 	explicit ibReferenceExternal(void* pObj):m_object(pObj), m_count(0) {}

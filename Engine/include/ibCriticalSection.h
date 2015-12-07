@@ -15,7 +15,7 @@ typedef ibMutex ibCriticalSection;
 
 #include "ibOS.h"
 
-class ibCriticalSection
+class IB_CORE_EXPORT ibCriticalSection
 {
 public:
 	ibCriticalSection();

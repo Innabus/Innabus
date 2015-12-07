@@ -91,6 +91,9 @@
     <ClCompile Include="src\ibEngineSettings.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="src\ibRenderThread.cpp">
+      <Filter>Threading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Util">

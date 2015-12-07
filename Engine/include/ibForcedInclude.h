@@ -8,6 +8,18 @@
 #define IB_EXPORT __declspec(dllimport)
 #endif // _USRDLL
 
+#ifdef CORE_DLL
+#define IB_CORE_EXPORT IB_EXPORT
+#else
+#define IB_CORE_EXPORT __declspec(dllimport)
+#endif
+
+#ifdef RENDER_DLL
+#define IB_RENDER_EXPORT IB_EXPORT
+#else
+#define IB_RENDER_EXPORT __declspec(dllimport)
+#endif
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "ibDataTypes.h"

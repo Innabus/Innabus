@@ -3,6 +3,7 @@
 #include "ibCriticalSection.h"
 #include "ibGameThread.h"
 #include "ibKillJob.h"
+#include "ibRenderThread.h"
 #include "ibSemaphore.h"
 #include "ibThreadBase.h"
 #include "ibJobThread.h"
@@ -35,7 +36,7 @@ void ibMCP::Shutdown()
 void ibMCP::ShutdownWait()
 {
 	s_pMCPInst->m_pGameThread->WaitForThread();
-	//s_pMCPInst->m_pRenderThread->WaitForThread();
+	s_pMCPInst->m_pRenderThread->WaitForThread();
 	if ( s_pMCPInst->m_pAuxThreads )
 	{
 		for ( u32 i = 0; i < s_pMCPInst->m_maxAuxThreads; ++i )
@@ -49,6 +50,7 @@ void ibMCP::ShutdownWait()
 		delete [] s_pMCPInst->m_pAuxThreads;
 		s_pMCPInst->m_pAuxThreads = 0;
 	}
+	delete s_pMCPInst->m_pRenderThread;
 	delete s_pMCPInst->m_pGameThread;
 }
 
@@ -109,9 +111,9 @@ void ibMCP::Init(u32 threadCount)
 	}
 
 	m_pGameThread = new (g_engineHeap->AllocHigh(sizeof(ibGameThread), "Game thread object")) ibGameThread;
-	//m_pRenderThread = new (g_engineHeap->AllocHigh(sizeof(ibRenderThread), "Render thread object")) ibRenderThread;
+	m_pRenderThread = new (g_engineHeap->AllocHigh(sizeof(ibRenderThread), "Render thread object")) ibRenderThread;
 
-	//m_pGameThread->Advance();
+	m_pGameThread->Advance();
 }
 
 ibGameThread* ibMCP::GetGameplayThread()

@@ -26,7 +26,7 @@ struct ibFileInfo
 	void* m_pData;
 };
 
-class IB_EXPORT ibFileRef : public ibReference<ibFileInfo>
+class IB_CORE_EXPORT ibFileRef : public ibReference<ibFileInfo>
 {
 public:
 	ibFileRef();

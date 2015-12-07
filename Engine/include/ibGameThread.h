@@ -3,23 +3,27 @@
 #pragma once
 
 #include "ibThreadBase.h"
+#include "ibRenderThread.h"
+#include "ibSemaphore.h"
 #include "ibSystem.h"
-
-extern GameEntryPoint GameMain;
 
 class ibGameThread : public ibThreadBase
 {
 public:
-	ibGameThread():m_updateFunc(0), m_semaphore(0, 1) {}
+	ibGameThread():m_updateFunc(g_startInfo.gameUpdate), m_semaphore(0, 1) {}
 	
 	void Advance() { m_semaphore.Release(); }
 
 	void RunLoop() 
 	{
-		while (!g_mcp.CheckShutdown())
+		if (m_updateFunc)
 		{
-			if (m_updateFunc)
+			while (!g_mcp.CheckShutdown())
+			{
+				m_semaphore.Lock();
 				(*m_updateFunc)(1.0f / 60.f);
+				g_renderThread.Advance();
+			}
 		}
 	}
 
@@ -28,8 +32,11 @@ public:
 protected:
 	void Run() {
 		SetThreadName("Gameplay");
-		GameMain();
+		if (g_startInfo.gameInit)
+			g_startInfo.gameInit();
+		RunLoop();
 		g_mcp.Shutdown();
+		g_renderThread.Advance();
 	}
 
 	GameUpdateFunc m_updateFunc;

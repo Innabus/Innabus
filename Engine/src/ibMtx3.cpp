@@ -251,7 +251,7 @@ ibMtx3 ibMtx3::Stabelize( const ibMtx3& mtx )
 	return ibMtx3(mtx).Stabelize();
 }
 
-bool IB_EXPORT operator== ( const ibMtx3& lhs, const ibMtx3& rhs )
+bool IB_CORE_EXPORT operator== ( const ibMtx3& lhs, const ibMtx3& rhs )
 {
 	for (u32 n = 0; n < 9; ++n)
 	{

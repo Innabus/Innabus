@@ -21,7 +21,7 @@ enum ibStandardPath
 	kPath_Count
 };
 
-class IB_EXPORT ibFileSystem
+class IB_CORE_EXPORT ibFileSystem
 {
 public:
 	static ibFileSystem* Get();

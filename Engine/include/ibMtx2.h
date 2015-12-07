@@ -2,7 +2,7 @@
 #define IB_MTX2_H
 #pragma once
 
-class IB_EXPORT ibMtx2
+class IB_CORE_EXPORT ibMtx2
 {
 public:
 	ibMtx2() {} // No default initialization
@@ -62,7 +62,7 @@ inline ibMtx2& operator-= ( ibMtx2& lhs, const ibMtx2& rhs ) { return lhs.Sub(rh
 inline ibMtx2& operator*= ( ibMtx2& lhs, const f32 scale ) { return lhs.Scale(scale); }
 inline ibMtx2& operator*= ( ibMtx2& lhs, const ibMtx2& rhs ) { return lhs.Mul(rhs); }
 
-bool IB_EXPORT operator== ( const ibMtx2& lhs, const ibMtx2& rhs );
+bool IB_CORE_EXPORT operator== ( const ibMtx2& lhs, const ibMtx2& rhs );
 inline bool operator!= ( const ibMtx2& lhs, const ibMtx2& rhs ) { return !(lhs == rhs); }
 
 #endif // IB_MTX2_H

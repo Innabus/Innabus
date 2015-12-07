@@ -2,7 +2,7 @@
 #define IB_JOB_H
 #pragma once
 
-class ibJob
+class IB_CORE_EXPORT ibJob
 {
 public:
 	enum Result {

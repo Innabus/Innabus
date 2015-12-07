@@ -5,7 +5,7 @@
 class ibVec3;
 class ibQuat;
 
-class IB_EXPORT ibMtx3
+class IB_CORE_EXPORT ibMtx3
 {
 public:
 	ibMtx3() {} // No default initialization
@@ -76,7 +76,7 @@ inline ibMtx3& operator-= ( ibMtx3& lhs, const ibMtx3& rhs ) { return lhs.Sub(rh
 inline ibMtx3& operator*= ( ibMtx3& lhs, const f32 scale ) { return lhs.Scale(scale); }
 inline ibMtx3& operator*= ( ibMtx3& lhs, const ibMtx3& rhs ) { return lhs.Mul(rhs); }
 
-bool IB_EXPORT operator== ( const ibMtx3& lhs, const ibMtx3& rhs );
+bool IB_CORE_EXPORT operator== ( const ibMtx3& lhs, const ibMtx3& rhs );
 inline bool operator!= ( const ibMtx3& lhs, const ibMtx3& rhs ) { return !(lhs == rhs); }
 
 #endif // IB_MTX3_H

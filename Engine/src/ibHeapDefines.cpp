@@ -19,7 +19,7 @@
 
 #define HEAP_MISC_SIZE (AVAIL_MEGS - HEAP_ENGINE_SIZE - HEAP_AUDIO_SIZE - HEAP_DEBUG_SIZE)
 
-ibHeapDesc s_Heaps[kHeap_Count] = {
+IB_CORE_EXPORT ibHeapDesc s_Heaps[kHeap_Count] = {
 	{ HEAP_ENGINE_SIZE << 20, 0 }, 	// Engine heap
 	{ HEAP_AUDIO_SIZE << 20,  0 }, 	// Audio heap
 	{ HEAP_MISC_SIZE << 20,   0 },  // Misc heap
@@ -68,13 +68,13 @@ void ibCreateHeaps()
 	// setupHeap deletes without calling destructors or affecting its memory
 }
 
-void IB_EXPORT ibCheckHeaps()
+void IB_CORE_EXPORT ibCheckHeaps()
 {
 	for (u32 n = 0; n < kHeap_Count; ++n)
 		s_Heaps[n].Heap->Check();
 }
 
-void IB_EXPORT ibDumpHeaps()
+void IB_CORE_EXPORT ibDumpHeaps()
 {
 	for (u32 n = 0; n < kHeap_Count; ++n)
 		s_Heaps[n].Heap->Dump();

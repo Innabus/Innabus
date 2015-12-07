@@ -8,7 +8,7 @@
 #include "ibVec3.h"
 #include "ibVec4.h"
 
-class IB_EXPORT ibQuat
+class IB_CORE_EXPORT ibQuat
 {
 public:
 	ibQuat();

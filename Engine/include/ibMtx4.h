@@ -6,7 +6,7 @@ class ibVec3;
 class ibVec4;
 class ibQuat;
 
-class IB_EXPORT ibMtx4
+class IB_CORE_EXPORT ibMtx4
 {
 public:
 	ibMtx4() {} // No default initialization
@@ -84,7 +84,7 @@ inline ibMtx4& operator-= ( ibMtx4& lhs, const ibMtx4& rhs ) { return lhs.Sub(rh
 inline ibMtx4& operator*= ( ibMtx4& lhs, const f32 scale ) { return lhs.Scale(scale); }
 inline ibMtx4& operator*= ( ibMtx4& lhs, const ibMtx4& rhs ) { return lhs.Mul(rhs); }
 
-bool IB_EXPORT operator== ( const ibMtx4& lhs, const ibMtx4& rhs );
+bool IB_CORE_EXPORT operator== ( const ibMtx4& lhs, const ibMtx4& rhs );
 inline bool operator!= ( const ibMtx4& lhs, const ibMtx4& rhs ) { return !(lhs == rhs); }
 
 #endif // DN_MATRIX_H

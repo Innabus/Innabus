@@ -2,7 +2,7 @@
 DisplayMode = 0
 DisplayWidth = 640
 DisplayHeight = 480
-UseWindow = 1
+UseWindow = 0
 # comment line
 InvalidKey=foo
 	  LeadingSpace=bar
