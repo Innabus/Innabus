@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E70E3A22-C3E0-4F27-93BA-9B5BEE0397E4}</ProjectGuid>
+    <ProjectGuid>{765FE7C7-8177-425A-A73B-E18642867518}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ATestGame</RootNamespace>
   </PropertyGroup>

@@ -1,0 +1,4 @@
+DisplayMode = 0
+DisplayWidth = 640
+DisplayHeight = 480
+UseWindow = 1
