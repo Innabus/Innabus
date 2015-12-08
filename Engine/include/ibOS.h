@@ -2,7 +2,7 @@
 #define IB_OS_H
 #pragma once
 
-#ifdef WIN32
+#ifdef IB_WINDOWS
 
 #include "ibEngineDefines.h"
 
@@ -28,6 +28,6 @@ namespace ibOS
 	u32 GetProcessId();
 }
 
-#endif // WIN32
+#endif // IB_WINDOWS
 
 #endif // IB_OS_H

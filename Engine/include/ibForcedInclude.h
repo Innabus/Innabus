@@ -30,4 +30,10 @@
 #include "ibUtil.h"
 #endif // __cplusplus
 
+#ifdef IB_WINDOWS
+#ifdef __cplusplus
+#include "ibComPtr.h"
+#endif
+#endif // IB_WINDOWS
+
 #endif // IB_FORCED_INCLUDE_H

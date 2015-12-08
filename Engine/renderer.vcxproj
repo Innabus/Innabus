@@ -19,20 +19,43 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ibColor.h" />
+    <ClInclude Include="include\ibRenderBuffer.h" />
     <ClInclude Include="include\ibRenderCommandList.h" />
     <ClInclude Include="include\ibRenderCommands.h" />
+    <ClInclude Include="include\ibRenderConstantBuffer.h" />
+    <ClInclude Include="include\ibRenderDepthStencil.h" />
+    <ClInclude Include="include\ibRenderDevice.h" />
     <ClInclude Include="include\ibRenderer.h" />
+    <ClInclude Include="include\ibRenderIndexBuffer.h" />
     <ClInclude Include="include\ibRenderObject.h" />
     <ClInclude Include="include\ibRenderPass.h" />
     <ClInclude Include="include\ibRenderPasses.h" />
+    <ClInclude Include="include\ibRenderShader.h" />
+    <ClInclude Include="include\ibRenderTarget.h" />
+    <ClInclude Include="include\ibRenderTargetManager.h" />
+    <ClInclude Include="include\ibRenderTexture.h" />
+    <ClInclude Include="include\ibRenderVertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ibColor.cpp" />
+    <ClCompile Include="src\ibRenderBuffer.cpp" />
     <ClCompile Include="src\ibRenderCommandList.cpp" />
     <ClCompile Include="src\ibRenderCommands.cpp" />
+    <ClCompile Include="src\ibRenderConstantBuffer.cpp" />
+    <ClCompile Include="src\ibRenderDepthStencil.cpp" />
+    <ClCompile Include="src\ibRenderDevice.cpp" />
+    <ClCompile Include="src\ibRenderDeviceDX11.cpp" />
     <ClCompile Include="src\ibRenderer.cpp" />
+    <ClCompile Include="src\ibRenderIndexBuffer.cpp" />
     <ClCompile Include="src\ibRenderObject.cpp" />
     <ClCompile Include="src\ibRenderPass.cpp" />
     <ClCompile Include="src\ibRenderPasses.cpp" />
+    <ClCompile Include="src\ibRenderShader.cpp" />
+    <ClCompile Include="src\ibRenderTarget.cpp" />
+    <ClCompile Include="src\ibRenderTargetManager.cpp" />
+    <ClCompile Include="src\ibRenderTexture.cpp" />
+    <ClCompile Include="src\ibRenderVertexBuffer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F4D837CF-FCBA-407B-9D61-C98D73291536}</ProjectGuid>
@@ -120,7 +143,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -139,7 +162,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -162,7 +185,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -185,7 +208,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

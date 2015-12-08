@@ -44,6 +44,10 @@
 #ifdef WIN32
 #define IB_WINDOWS
 #define IB_PLATFORM_HAS_CRITICAL_SECTION
+
+#ifndef NDEBUG
+//#define IB_TRACK_COM_REFERENCES
+#endif
 #endif // WIN32
 
 #endif // IB_ENGINE_DEFINES_H

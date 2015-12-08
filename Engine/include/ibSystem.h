@@ -28,6 +28,8 @@ public:
 	static int RunLoop();
 
 	static void* SystemAlloc(u32 sizeBytes);
+
+	ibOS::Window GetMainWindow();
 };
 
 #define g_engineSettings (*(ibSystem::GetSettings()))

@@ -3,6 +3,7 @@
 #define IB_NEW_H
 
 #include <cstddef>
+#include <new> // Force targets to link against placement new
 
 #include "ibHeapDefines.h"
 

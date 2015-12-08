@@ -12,7 +12,7 @@ namespace
 {
 	void* s_systemHeapPtr = 0;
 
-	HWND s_mainWnd;
+	ibOS::Window s_mainWnd;
 
 	LRESULT CALLBACK ibWndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -102,4 +102,9 @@ void* ibSystem::SystemAlloc(u32 sizeBytes)
 	s_systemHeapPtr = HeapAlloc(GetProcessHeap(), 0, sizeBytes);
 	ibAssertMsg(s_systemHeapPtr, "Failed to allocate system heap.");
 	return s_systemHeapPtr;
+}
+
+ibOS::Window ibSystem::GetMainWindow()
+{
+	return s_mainWnd;
 }

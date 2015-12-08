@@ -209,6 +209,7 @@
     <ClInclude Include="3rdParty\sqlite3\sqlite3.h" />
     <ClInclude Include="include\ibAllocationData.h" />
     <ClInclude Include="include\ibAtomic.h" />
+    <ClInclude Include="include\ibComPtr.h" />
     <ClInclude Include="include\ibCriticalSection.h" />
     <ClInclude Include="include\ibDataTypes.h" />
     <ClInclude Include="include\ibEngineDefines.h" />

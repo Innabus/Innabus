@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ibRenderDevice.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderTargetManager.cpp">
+      <Filter>Render Targets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderCommandList.cpp">
+      <Filter>Command List</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderTarget.cpp">
+      <Filter>Render Targets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderBuffer.cpp">
+      <Filter>Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderConstantBuffer.cpp">
+      <Filter>Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderIndexBuffer.cpp">
+      <Filter>Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderVertexBuffer.cpp">
+      <Filter>Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderCommands.cpp">
+      <Filter>Command List</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderDepthStencil.cpp">
+      <Filter>Render Targets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderPass.cpp">
+      <Filter>Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderPasses.cpp">
+      <Filter>Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderObject.cpp">
+      <Filter>Render Passes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderTexture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibColor.cpp">
+      <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderDeviceDX11.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ibRenderDevice.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderCommandList.h">
+      <Filter>Command List</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderTargetManager.h">
+      <Filter>Render Targets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderTarget.h">
+      <Filter>Render Targets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderBuffer.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderConstantBuffer.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderIndexBuffer.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderVertexBuffer.h">
+      <Filter>Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderCommands.h">
+      <Filter>Command List</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderDepthStencil.h">
+      <Filter>Render Targets</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderPass.h">
+      <Filter>Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderPasses.h">
+      <Filter>Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderObject.h">
+      <Filter>Render Passes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderTexture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibColor.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Device">
+      <UniqueIdentifier>{cca709c0-804c-45e9-97f1-5095774401bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render Targets">
+      <UniqueIdentifier>{02318b97-4773-47e0-990b-bbbc0088f1bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Command List">
+      <UniqueIdentifier>{e7ff4f52-22d2-4211-97d4-f0b4e08e6131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buffers">
+      <UniqueIdentifier>{db296761-3d58-45c7-a7f3-2d5adeec1a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render Passes">
+      <UniqueIdentifier>{3ab60ee7-3129-4a0f-a859-039400f6fef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{71297f7e-e785-4dec-b532-ecbe3ca21736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color">
+      <UniqueIdentifier>{f7b21e66-d781-42ce-96f7-ff339a188773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{30b69974-5576-461d-9b83-32606a79766b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{8e53dfcb-6fbd-45bf-a31e-5ee43ce5fd4e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
