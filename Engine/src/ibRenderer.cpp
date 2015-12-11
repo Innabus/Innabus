@@ -5,7 +5,12 @@
 
 #include "ibLog.h"
 
+#include "ibGameThread.h"
+#include "ibMCP.h"
 #include "ibRenderDevice.h"
+#include "ibSystem.h"
+
+#include <ctime>
 
 namespace
 {
@@ -15,7 +20,13 @@ namespace
 void ibRenderer::Init()
 {
 	ibAssert(s_pRenderer == 0);
-	s_pRenderer = new (g_miscHeap->AllocHigh(sizeof(ibRenderer), "ibRenderer")) ibRenderer;
+	s_pRenderer = new (g_engineHeap->AllocHigh(sizeof(ibRenderer), "ibRenderer")) ibRenderer;
+}
+
+void ibRenderer::Shutdown()
+{
+	ibAssert(s_pRenderer);
+	delete s_pRenderer;
 }
 
 ibRenderer* ibRenderer::Get()
@@ -25,20 +36,41 @@ ibRenderer* ibRenderer::Get()
 
 ibRenderer::ibRenderer()
 {
-	m_pRenderDevice = new (g_miscHeap->AllocHigh(sizeof(ibRenderDevice), "ibRenderDevice")) ibRenderDevice;
+	if (!ibSystem::GetMainWindow())
+		return;
+
+	m_pRenderDevice = new (g_engineHeap->AllocHigh(sizeof(ibRenderDevice), "ibRenderDevice")) ibRenderDevice;
 }
 
 ibRenderer::~ibRenderer()
 {
+	delete m_pRenderDevice;
 }
 
 void ibRenderer::Update()
 {
-	ibLog("Render Update\n");
+	float colors[][4] = {
+		{ 1.f, 0.f, 0.f, 1.f },
+		{ 1.f, 0.f, 1.f, 1.f },
+		{ 1.f, 1.f, 0.f, 1.f },
+		{ 0.f, 1.f, 0.f, 1.f },
+		{ 0.f, 1.f, 1.f, 1.f },
+		{ 0.f, 0.f, 1.f, 1.f },
+	};
+	u32 nColors = _countof(colors);
+	u32 n = time(0) % nColors;
 
 	// Swap command lists
+
 	// Release game thread
-	//g_gameThread.Advance();
+	g_gameThread.Advance();
+
+	if (s_pRenderer->m_pRenderDevice)
+	{
+		//const float color[4] = { 1.f, 0.f, 1.f, 1.f };
+		s_pRenderer->m_pRenderDevice->ClearImmediate(colors[n], 1.f, 0, true);
+		s_pRenderer->m_pRenderDevice->Present();
+	}
 
 	// Execute commands
 }

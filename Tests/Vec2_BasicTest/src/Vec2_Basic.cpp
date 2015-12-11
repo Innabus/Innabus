@@ -157,3 +157,9 @@ int GameMain()
 	Sleep(1000);
 	return 0;
 }
+
+extern "C"
+int GameUpdate(float)
+{
+	return 0;
+}

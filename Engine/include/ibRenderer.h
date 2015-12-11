@@ -8,6 +8,7 @@ class IB_RENDER_EXPORT ibRenderer
 {
 public:
 	static void Init();
+	static void Shutdown();
 	static ibRenderer* Get();
 	static void Update();
 

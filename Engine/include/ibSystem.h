@@ -5,6 +5,7 @@ typedef int (*GameEntryPoint)();
 typedef int (*GameUpdateFunc)(float);
 typedef void (*RenderInitFunc)();
 typedef void (*RenderUpdateFunc)();
+typedef void (*RenderShutdownFunc)();
 
 struct StartupGameInfo
 {
@@ -12,13 +13,14 @@ struct StartupGameInfo
 	GameUpdateFunc gameUpdate;
 	RenderInitFunc renderInit;
 	RenderUpdateFunc renderUpdate;
+	RenderShutdownFunc renderShutdown;
 };
 
 struct ibEngineSettings;
 
 IB_CORE_EXPORT void SystemStartup(const StartupGameInfo* pGameInfo);
 
-class ibSystem
+class IB_CORE_EXPORT ibSystem
 {
 public:
 	static ibEngineSettings* GetSettings();
@@ -29,7 +31,7 @@ public:
 
 	static void* SystemAlloc(u32 sizeBytes);
 
-	ibOS::Window GetMainWindow();
+	static ibOS::Window GetMainWindow();
 };
 
 #define g_engineSettings (*(ibSystem::GetSettings()))

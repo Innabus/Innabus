@@ -3,6 +3,7 @@
 #pragma once
 
 #include "ibThreadBase.h"
+#include "ibMCP.h"
 #include "ibRenderThread.h"
 #include "ibSemaphore.h"
 #include "ibSystem.h"

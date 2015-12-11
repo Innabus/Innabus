@@ -1,5 +1,6 @@
 #include "ibRenderThread.h"
 
+#include "ibGameThread.h"
 #include "ibMCP.h"
 #include "ibSystem.h"
 
@@ -21,7 +22,12 @@ void ibRenderThread::Run()
 		// Wait for advance
 		m_semaphore.Lock();
 		// Update renderer
-		//if (!g_mcp.CheckShutdown()) // Skip if the shutdown happened while we were locked
+		if (!g_mcp.CheckShutdown()) // Skip if the shutdown happened while we were locked
 			g_startInfo.renderUpdate();
 	}
+	
+	g_gameThread.Advance();
+
+	if (g_startInfo.renderShutdown)
+		g_startInfo.renderShutdown();
 }

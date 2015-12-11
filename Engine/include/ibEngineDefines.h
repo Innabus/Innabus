@@ -40,6 +40,9 @@
 // File system and limits
 #define IB_MAX_FILE_SIZE (40 * 1024 * 1024)
 
+// Rendering defines
+//#define IB_RENDER_PREVENT_THREADING
+
 // Platform configuration
 #ifdef WIN32
 #define IB_WINDOWS
