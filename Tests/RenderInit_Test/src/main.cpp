@@ -12,5 +12,5 @@ int GameMain()
 extern "C"
 int GameUpdate(float)
 {
-	return 0;
+	return 1;
 }

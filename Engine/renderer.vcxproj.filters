@@ -47,7 +47,7 @@
       <Filter>Color</Filter>
     </ClCompile>
     <ClCompile Include="src\ibRenderShader.cpp">
-      <Filter>Shader</Filter>
+      <Filter>Shaders</Filter>
     </ClCompile>
     <ClCompile Include="src\ibRenderer.cpp">
       <Filter>Renderer</Filter>
@@ -103,7 +103,7 @@
       <Filter>Color</Filter>
     </ClInclude>
     <ClInclude Include="include\ibRenderShader.h">
-      <Filter>Shader</Filter>
+      <Filter>Shaders</Filter>
     </ClInclude>
     <ClInclude Include="include\ibRenderer.h">
       <Filter>Renderer</Filter>
@@ -131,11 +131,11 @@
     <Filter Include="Color">
       <UniqueIdentifier>{f7b21e66-d781-42ce-96f7-ff339a188773}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{30b69974-5576-461d-9b83-32606a79766b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{8e53dfcb-6fbd-45bf-a31e-5ee43ce5fd4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{30b69974-5576-461d-9b83-32606a79766b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -10,6 +10,8 @@
 #include "ibRenderDevice.h"
 #include "ibSystem.h"
 
+#include "ibColor.h"
+
 #include <ctime>
 
 namespace
@@ -49,14 +51,15 @@ ibRenderer::~ibRenderer()
 
 void ibRenderer::Update()
 {
-	float colors[][4] = {
-		{ 1.f, 0.f, 0.f, 1.f },
-		{ 1.f, 0.f, 1.f, 1.f },
-		{ 1.f, 1.f, 0.f, 1.f },
-		{ 0.f, 1.f, 0.f, 1.f },
-		{ 0.f, 1.f, 1.f, 1.f },
-		{ 0.f, 0.f, 1.f, 1.f },
+	ibColorF colors[] = {
+		ibColorF::SOLID_RED,
+		ibColorF::SOLID_YELLOW,
+		ibColorF::SOLID_GREEN,
+		ibColorF::SOLID_CYAN,
+		ibColorF::SOLID_BLUE,
+		ibColorF::SOLID_MAGENTA,
 	};
+
 	u32 nColors = _countof(colors);
 	u32 n = time(0) % nColors;
 
@@ -73,4 +76,5 @@ void ibRenderer::Update()
 	}
 
 	// Execute commands
+	// Present
 }
