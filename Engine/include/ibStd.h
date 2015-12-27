@@ -18,7 +18,7 @@ template <class T>
 class ibVector : public std::vector<T, ibAllocator<T>> {};
 
 template <class K, class V, class Comp = std::less<K>>
-class ibMap : public std::map<K, V, Comp, ibAllocator<std::pair<const K, V>>> {};
+class IB_CORE_EXPORT ibMap : public std::map<K, V, Comp, ibAllocator<std::pair<const K, V>>> {};
 
 template <class T>
 class ibQueue : public std::queue<T, std::deque<T, ibAllocator<T>>> {};

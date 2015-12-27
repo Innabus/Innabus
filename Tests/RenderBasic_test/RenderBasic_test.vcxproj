@@ -18,77 +18,33 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\ibColor.h" />
-    <ClInclude Include="include\ibRenderBuffer.h" />
-    <ClInclude Include="include\ibRenderCommandList.h" />
-    <ClInclude Include="include\ibRenderCommands.h" />
-    <ClInclude Include="include\ibRenderConstantBuffer.h" />
-    <ClInclude Include="include\ibRenderDefs.h" />
-    <ClInclude Include="include\ibRenderDepthStencil.h" />
-    <ClInclude Include="include\ibRenderDevice.h" />
-    <ClInclude Include="include\ibRenderer.h" />
-    <ClInclude Include="include\ibRenderIndexBuffer.h" />
-    <ClInclude Include="include\ibRenderObject.h" />
-    <ClInclude Include="include\ibRenderPass.h" />
-    <ClInclude Include="include\ibRenderPasses.h" />
-    <ClInclude Include="include\ibRenderSampler.h" />
-    <ClInclude Include="include\ibRenderShader.h" />
-    <ClInclude Include="include\ibRenderTarget.h" />
-    <ClInclude Include="include\ibRenderTargetManager.h" />
-    <ClInclude Include="include\ibRenderTexture.h" />
-    <ClInclude Include="include\ibRenderVertex.h" />
-    <ClInclude Include="include\ibRenderVertexBuffer.h" />
-    <ClInclude Include="include\ibRenderShaderManager.h" />
-    <ClInclude Include="include\ibShaders.h" />
-    <ClInclude Include="include\ibRenderVertexDescs.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\ibColor.cpp" />
-    <ClCompile Include="src\ibRenderBuffer.cpp" />
-    <ClCompile Include="src\ibRenderCommandList.cpp" />
-    <ClCompile Include="src\ibRenderCommands.cpp" />
-    <ClCompile Include="src\ibRenderConstantBuffer.cpp" />
-    <ClCompile Include="src\ibRenderDevice.cpp" />
-    <ClCompile Include="src\ibRenderDeviceDX11.cpp" />
-    <ClCompile Include="src\ibRenderer.cpp" />
-    <ClCompile Include="src\ibRenderIndexBuffer.cpp" />
-    <ClCompile Include="src\ibRenderPass.cpp" />
-    <ClCompile Include="src\ibRenderPasses.cpp" />
-    <ClCompile Include="src\ibRenderShader.cpp" />
-    <ClCompile Include="src\ibRenderShaderManager.cpp" />
-    <ClCompile Include="src\ibRenderTargetManager.cpp" />
-    <ClCompile Include="src\ibRenderTexture.cpp" />
-    <ClCompile Include="src\ibRenderVertexBuffer.cpp" />
-    <ClCompile Include="src\ibRenderVertexDescs.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F4D837CF-FCBA-407B-9D61-C98D73291536}</ProjectGuid>
+    <ProjectGuid>{E70E3A22-C3E0-4F27-93BA-9B5BEE0397E4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>core</RootNamespace>
+    <RootNamespace>ATestGame</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -112,110 +68,126 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>Build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir>lib\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Tests\Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
     <LibraryPath>$(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>Build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir>lib\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Tests\Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>$(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>Build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir>lib\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Tests\Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>$(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>Build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir>lib\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Tests\Build\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>$(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>RENDER_DLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <ForcedIncludeFiles>ibForcedInclude.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <MinimalRebuild>false</MinimalRebuild>
+      <ForcedIncludeFiles>ibForcedInclude.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>D3D11.lib;DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Innabus.lib;core.lib;renderer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)BuildScripts\postbuild.bat $(OutDir) $(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <ForcedIncludeFiles>ibForcedInclude.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>ibForcedInclude.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Innabus.lib;core.lib;renderer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)BuildScripts\postbuild.bat $(OutDir) $(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <ForcedIncludeFiles>ibForcedInclude.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>ibForcedInclude.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Innabus.lib;core.lib;renderer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)BuildScripts\postbuild.bat $(OutDir) $(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Engine\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <ForcedIncludeFiles>ibForcedInclude.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles>ibForcedInclude.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>DXGI.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Innabus.lib;core.lib;renderer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)BuildScripts\postbuild.bat $(OutDir) $(SolutionDir)Engine\lib\$(Platform)\$(Configuration)\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="EngineSettings_Test.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="GameEngineSettings.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

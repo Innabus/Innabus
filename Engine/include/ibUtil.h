@@ -25,6 +25,13 @@ namespace innabus
 
 #define ibUnused( x ) x
 
+#define STRINGIFY_HELPER(x) #x
+#define STRINGIFY(x) STRINGIFY_HELPER(x)
+#define EMIT(x) message(__FILE__"("STRINGIFY(__LINE__)"): " x)
+#define STATIC_TODO(desc) EMIT("warning: todo: " desc)
+#define STATIC_WARNING(desc) EMIT("warning: " desc)
+#define STATIC_ERROR(desc) EMIT("error: " desc)
+
 #define SAFE_RELEASE(x) if ((x)) { x->Release(); x = 0; }
 
 #define ibMin(x, y) ((x < y) ? x : y)

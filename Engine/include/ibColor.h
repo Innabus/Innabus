@@ -35,13 +35,14 @@ public:
 class ibColorF
 {
 public:
+	ibColorF() {}
 	explicit ibColorF( u32 color );
 	ibColorF( u8 red, u8 green, u8 blue, u8 alpha );
 	ibColorF( f32 red, f32 green, f32 blue, f32 alpha );
 	explicit ibColorF( const ibColor& );
 	ibColorF( const ibColorF& );
 
-	operator float*() { return &r; }
+	operator const float*() const { return &r; }
 
 	f32 r, g, b, a;
 

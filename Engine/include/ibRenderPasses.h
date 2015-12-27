@@ -12,7 +12,8 @@ template class IB_RENDER_EXPORT ibVector<ibRenderPass*>;
 class IB_RENDER_EXPORT ibRenderPasses
 {
 public:
-	static void Create(ibRenderPassDesc* pDescs, u32 nPasses);
+	static void Create();
+	//static void Create(ibRenderPassDesc* pDescs, u32 nPasses);
 	static ibRenderPasses* Get();
 
 	void Add(ibRenderPass* pPass);
@@ -33,5 +34,7 @@ private:
 
 	ibVector<ibRenderPass*> m_renderPasses;
 };
+
+#define g_renderPasses (*ibRenderPasses::Get())
 
 #endif // IB_RENDER_PASSES_H

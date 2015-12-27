@@ -10,9 +10,6 @@
     <ClCompile Include="src\ibRenderCommandList.cpp">
       <Filter>Command List</Filter>
     </ClCompile>
-    <ClCompile Include="src\ibRenderTarget.cpp">
-      <Filter>Render Targets</Filter>
-    </ClCompile>
     <ClCompile Include="src\ibRenderBuffer.cpp">
       <Filter>Buffers</Filter>
     </ClCompile>
@@ -28,16 +25,10 @@
     <ClCompile Include="src\ibRenderCommands.cpp">
       <Filter>Command List</Filter>
     </ClCompile>
-    <ClCompile Include="src\ibRenderDepthStencil.cpp">
-      <Filter>Render Targets</Filter>
-    </ClCompile>
     <ClCompile Include="src\ibRenderPass.cpp">
       <Filter>Render Passes</Filter>
     </ClCompile>
     <ClCompile Include="src\ibRenderPasses.cpp">
-      <Filter>Render Passes</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ibRenderObject.cpp">
       <Filter>Render Passes</Filter>
     </ClCompile>
     <ClCompile Include="src\ibRenderTexture.cpp">
@@ -54,6 +45,12 @@
     </ClCompile>
     <ClCompile Include="src\ibRenderDeviceDX11.cpp">
       <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderVertexDescs.cpp">
+      <Filter>Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ibRenderShaderManager.cpp">
+      <Filter>Shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +105,24 @@
     <ClInclude Include="include\ibRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="include\ibRenderSampler.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderDefs.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderVertex.h">
+      <Filter>Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibShaders.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderVertexDescs.h">
+      <Filter>Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ibRenderShaderManager.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Device">
@@ -136,6 +151,12 @@
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{30b69974-5576-461d-9b83-32606a79766b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{2d9f0bb8-f796-4015-abbf-e0e068ff3884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vertex">
+      <UniqueIdentifier>{9c550c3c-cc21-471f-ae78-bf4bd8f1bf70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

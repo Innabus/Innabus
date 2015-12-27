@@ -5,6 +5,14 @@
 namespace
 {
 	static ibRenderPasses* s_pRenderPasses;
+
+	ibRenderPassDesc s_renderPassDescs[] = {
+		// Opaque pass
+		{},
+		// Alpha pass
+		// UI pass
+		// Post process
+	};
 }
 
 ibRenderPasses::ibRenderPasses(ibRenderPassDesc* pDescs, u32 nPasses)
@@ -89,6 +97,10 @@ void ibRenderPasses::Remove(ibRenderPass* pPass)
 	m_renderPasses.erase(iter, m_renderPasses.end());
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// ibRenderPasses::Execute
+//	Should run on game thread.
+///////////////////////////////////////////////////////////////////////////////
 void ibRenderPasses::Execute()
 {
 	// Debug clear

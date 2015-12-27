@@ -40,7 +40,16 @@
 // File system and limits
 #define IB_MAX_FILE_SIZE (40 * 1024 * 1024)
 
+// Platform configuration
+#ifdef WIN32
+#define IB_WINDOWS
+#define IB_PLATFORM_HAS_CRITICAL_SECTION
+
 // Rendering defines
+#ifdef IB_WINDOWS
+#define IB_RENDER_DX11
+#endif // IB_WINDOWS
+
 //#define IB_RENDER_PREVENT_THREADING
 #define IB_RENDER_PASS_SET_DEFAULT_STATE
 #define IB_RENDER_DEBUG
@@ -49,12 +58,10 @@
 #define IB_RENDER_PASS_SET_DEFAULT_STATE
 #define IB_RENDER_PASS_VERIFY_STATE
 #define IB_RENDER_PASS_VERIFY_STATE_PER_OBJECT
+#define IB_RENDER_VALIDATE_BOUND_RENDER_TARGET_VEIWS
 #endif // IB_RENDER_DEBUG
-
-// Platform configuration
-#ifdef WIN32
-#define IB_WINDOWS
-#define IB_PLATFORM_HAS_CRITICAL_SECTION
+#define IB_MAX_RENDER_TARGET_DESCS 8
+#define IB_RENDER_COMMAND_LIST_SIZE (1024 * 1024)
 
 #ifndef NDEBUG
 //#define IB_TRACK_COM_REFERENCES

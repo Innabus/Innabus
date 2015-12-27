@@ -1,6 +1,7 @@
 #include "ibRenderPass.h"
 
 #include "ibRenderObject.h"
+#include "ibRenderer.h"
 
 ibRenderPass::ibRenderPass():m_owned(false)
 {
@@ -49,7 +50,7 @@ void ibRenderPass::SetCapacity(u32 count, bool bRelease)
 
 ///////////////////////////////////////////////////////////////////////////////
 // ibRenderPass::Execute
-//	Should run on render thread.
+//	Should run on game thread.
 ///////////////////////////////////////////////////////////////////////////////
 void ibRenderPass::Execute()
 {
@@ -62,16 +63,20 @@ void ibRenderPass::Execute()
 	//{
 	//}
 
+	ibRenderCommandList& commandList = g_renderer.GetUpdateCommandList();
+
 	// Render
 	for (ibRenderObject* pObject : m_renderObjects)
 	{
-		pObject->Render();
+		pObject->Render(commandList);
 		// Verify state restored*
 #ifdef IB_RENDER_PASS_VERIFY_STATE_PER_OBJECT
+#pragma STATIC_TODO("Verify render pass state after each object")
 #endif
 	}
 
 	// Verify state restored*
 #ifdef IB_RENDER_PASS_VERIFY_STATE
+#pragma STATIC_TODO("Verify render pass state after rendering finishes")
 #endif
 }

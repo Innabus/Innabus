@@ -42,6 +42,13 @@ ibRenderer::ibRenderer()
 		return;
 
 	m_pRenderDevice = new (g_engineHeap->AllocHigh(sizeof(ibRenderDevice), "ibRenderDevice")) ibRenderDevice;
+
+	m_updateCommandList = 0;
+	for (u32 n = 0; n < 2; ++n)
+	{
+		u8* ptr = g_engineHeap->Alloc<u8>(IB_RENDER_COMMAND_LIST_SIZE, "Render Command List");
+		m_commandLists[n].Init(ptr, IB_RENDER_COMMAND_LIST_SIZE);
+	}
 }
 
 ibRenderer::~ibRenderer()
@@ -64,6 +71,7 @@ void ibRenderer::Update()
 	u32 n = time(0) % nColors;
 
 	// Swap command lists
+	s_pRenderer->m_updateCommandList ^= 1;
 
 	// Release game thread
 	g_gameThread.Advance();
@@ -78,3 +86,4 @@ void ibRenderer::Update()
 	// Execute commands
 	// Present
 }
+
